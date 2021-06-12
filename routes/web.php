@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', 'HomeController@index')->name('user.home.index');
+
+    Route::get('/category/{id}', 'CategoryController@show')->name('user.category.show');
+    Route::get('/product/{id}', 'ProductController@show')->name('user.product.detail');
+});
+
+Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'role']], function () {
+    Route::get('/', 'AdminController@index')->name('admin.home.index');
+});

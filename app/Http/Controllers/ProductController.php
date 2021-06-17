@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.products.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return back();
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return view('user.products.details');
+        return view('admin.products.detail');
     }
 
     /**
@@ -55,7 +55,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.products.detail');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
     }
 
     /**
@@ -78,6 +78,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return back();
     }
 }

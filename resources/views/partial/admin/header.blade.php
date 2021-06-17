@@ -16,14 +16,20 @@
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="{{ asset('images/user.svg') }}" alt=""></div>
-                            <div style="font-size: 16px">
-                                {{ Auth::user()->first_name . ' ' .  Auth::user()->middle_name . ' ' .  Auth::user()->last_name }}
-                            </div>
-                            <div><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">Đăng xuất</a></div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                            @guest
+                                <div><a href="{{ route('register') }}">Đăng ký</a></div>
+                                <div><a href="{{ route('login') }}">Đăng nhập</a></div>
+                            @endguest
+                            @auth
+                                <div style="font-size: 16px">
+                                    {{ Auth::user()->first_name . ' ' .  Auth::user()->middle_name . ' ' .  Auth::user()->last_name }}
+                                </div>
+                                <div><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Đăng xuất</a></div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                @endauth
                         </div>
                     </div>
                 </div>
@@ -44,9 +50,12 @@
 
                         <div class="main_nav_menu ml-auto">
                             <ul class="standard_dropdown main_nav_dropdown">
-                                <li><a href="#">Trang chủ<i class="fas fa-chevron-down"></i></a></li>
-                                <li><a href="#">Danh mục<i class="fas fa-chevron-down"></i></a></li>
-                                <li><a href="#">Danh sách sản phẩm<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="{{ route('admin.home.index') }}">Trang chủ<i
+                                            class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="{{ route('admin.category.index') }}">Danh mục<i
+                                            class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="{{ route('admin.product.index') }}">Danh sách sản phẩm<i
+                                            class="fas fa-chevron-down"></i></a></li>
                             </ul>
                         </div>
 

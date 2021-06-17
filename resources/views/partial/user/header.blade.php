@@ -6,13 +6,31 @@
         <div class="container">
             <div class="row">
                 <div class="col d-flex flex-row">
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('images/phone.png') }}" alt=""></div>+38 068 005 3570</div>
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('images/mail.png') }}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                    <div class="top_bar_contact_item">
+                        <div class="top_bar_icon"><img src="{{ asset('images/phone.png') }}" alt=""></div>+38 068 005
+                        3570
+                    </div>
+                    <div class="top_bar_contact_item">
+                        <div class="top_bar_icon"><img src="{{ asset('images/mail.png') }}" alt=""></div><a
+                            href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                    </div>
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="{{ asset('images/user.svg') }}" alt=""></div>
-                            <div><a href="{{ route('register') }}">Đăng ký</a></div>
-                            <div><a href="{{ route('login') }}">Đăng nhập</a></div>
+                            @guest
+                                <div><a href="{{ route('register') }}">Đăng ký</a></div>
+                                <div><a href="{{ route('login') }}">Đăng nhập</a></div>
+                            @endguest
+                            @auth
+                                <div style="font-size: 16px">
+                                    {{ Auth::user()->first_name . ' ' .  Auth::user()->middle_name . ' ' .  Auth::user()->last_name }}
+                                </div>
+                                <div><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Đăng xuất</a></div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -39,7 +57,8 @@
                         <div class="header_search_content">
                             <div class="header_search_form_container">
                                 <form action="#" class="header_search_form clearfix">
-                                    <input type="search" required="required" class="header_search_input" placeholder="Tìm kiếm sản phẩm...">
+                                    <input type="search" required="required" class="header_search_input"
+                                        placeholder="Tìm kiếm sản phẩm...">
                                     <div class="custom_dropdown">
                                         <div class="custom_dropdown_list">
                                             <span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -54,7 +73,8 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{ asset('images/search.png') }}" alt=""></button>
+                                    <button type="submit" class="header_search_button trans_300" value="Submit"><img
+                                            src="{{ asset('images/search.png') }}" alt=""></button>
                                 </form>
                             </div>
                         </div>
@@ -101,7 +121,8 @@
                             </div>
 
                             <ul class="cat_menu">
-                                <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                                <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a>
+                                </li>
                                 <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
                                 <li class="hassubs">
                                     <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
@@ -160,7 +181,8 @@
                             <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
                                 <div class="menu_burger">
                                     <div class="menu_trigger_text">menu</div>
-                                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                                    <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +204,8 @@
 
                         <div class="page_menu_search">
                             <form action="#">
-                                <input type="search" required="required" class="page_menu_search_input" placeholder="Tìm kiếm sản phẩm...">
+                                <input type="search" required="required" class="page_menu_search_input"
+                                    placeholder="Tìm kiếm sản phẩm...">
                             </form>
                         </div>
                         <ul class="page_menu_nav">
@@ -198,12 +221,19 @@
                                     <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                                 </ul>
                             </li>
-                            <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
+                            <li class="page_menu_item"><a href="contact.html">contact<i
+                                        class="fa fa-angle-down"></i></a></li>
                         </ul>
 
                         <div class="menu_contact">
-                            <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{ asset('images/phone_white.png') }}" alt=""></div>+38 068 005 3570</div>
-                            <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{ asset('images/mail_white.png') }}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                            <div class="menu_contact_item">
+                                <div class="menu_contact_icon"><img src="{{ asset('images/phone_white.png') }}" alt="">
+                                </div>+38 068 005 3570
+                            </div>
+                            <div class="menu_contact_item">
+                                <div class="menu_contact_icon"><img src="{{ asset('images/mail_white.png') }}" alt="">
+                                </div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>

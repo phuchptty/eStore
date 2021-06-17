@@ -23,7 +23,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/partial/header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/partial/footer.css') }}">
 
     @yield('css-lib')
 

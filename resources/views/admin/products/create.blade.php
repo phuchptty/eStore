@@ -3,7 +3,7 @@
 @section('title', 'Trang chủ')
 
 @section('css-lib')
-
+<link rel="stylesheet" href="{{ asset('css/admin/product/product.css') }}">
 @endsection
 
 @section('css')

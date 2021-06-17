@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+.category_section {
+    width: 100%;
+    padding-top: 93px;
+    padding-bottom: 111px;
+}
+.category_title {
+    font-size: 30px;
+    font-weight: 500;
+}
+.category_items {
+    margin-top: 67px;
+}
+.category_list {
+    border: solid 1px #e8e8e8;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+.category_item {
+    width: 100%;
+    padding: 15px;
+    padding-right: 46px;
+}
+.category_item_info {
+    width: calc(100% - 133px);
+    float: left;
+    padding-top: 18px;
+}
+.category_item_name {
+    margin-left: 7.53%;
+}
+.category_item_title {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+}
+.category_item_text {
+    font-size: 18px;
+    margin-top: 35px;
+}
+.category_item_text span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 11px;
+    -webkit-transform: translateY(4px);
+    -moz-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    transform: translateY(4px);
+}
+
+.category_buttons {
+    margin-top: 60px;
+    text-align: right;
+}
+.category_button_create {
+    display: inline-block;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 48px;
+    color: #ffffff;
+    background: #0e8ce4;
+    padding-left: 35px;
+    padding-right: 35px;
+    outline: none;
+    cursor: pointer;
+    vertical-align: top;
+}
+.category_button_create:hover {
+    color: #fff;
+}
+.category_button_update {
+    display: inline-block;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 48px;
+    color: rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    border: solid 1px #b2b2b2;
+    padding-left: 35px;
+    padding-right: 35px;
+    outline: none;
+    cursor: pointer;
+    margin-right: 26px;
+}
+.category_button_update:hover {
+    border-color: #0e8ce4;
+    color: #0e8ce4;
+}
+.category_button_delete {
+    display: inline-block;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 48px;
+    color: #ffffff;
+    background: red;
+    padding-left: 35px;
+    padding-right: 35px;
+    outline: none;
+    cursor: pointer;
+    vertical-align: top;
+}

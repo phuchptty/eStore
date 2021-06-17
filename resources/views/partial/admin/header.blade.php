@@ -56,6 +56,8 @@
                                             class="fas fa-chevron-down"></i></a></li>
                                 <li><a href="{{ route('admin.product.index') }}">Danh sách sản phẩm<i
                                             class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="{{ route('admin.product.index') }}">Thông tin cá nhân<i
+                                    class="fas fa-chevron-down"></i></a></li>
                             </ul>
                         </div>
 

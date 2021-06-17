@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container">
-        Đây là trang chủ
+        Đây là trang Admin
     </div>
 @endsection
 

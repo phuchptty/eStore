@@ -56,6 +56,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    protected $fillable = [
+        'title',
+        'quantity',
+        'price'
+    ];
+
     public function users()
     {
         return $this->belongsTo('App\User');

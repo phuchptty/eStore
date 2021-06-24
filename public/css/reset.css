@@ -9,7 +9,7 @@
 }
 body {
     font-family: "Nunito", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     background: #ffffff;
     color: #000000;
@@ -106,7 +106,8 @@ h5::selection,
 h6::selection {
 }
 .form-control {
-    color: #db5246;
+    /* color: #db5246; */
+    color: #000;
 }
 section {
     display: block;

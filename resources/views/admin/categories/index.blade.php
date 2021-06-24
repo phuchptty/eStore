@@ -28,17 +28,17 @@
                         <div class="category_items">
 
                             <ul class="category_list">
-{{--                                <li class="category_item clearfix">--}}
-{{--                                    <div--}}
-{{--                                        class="category_item_info d-flex flex-md-row flex-column justify-content-between" style="padding-top: 18px">--}}
-{{--                                        <div class="category_item_name category_info_col">--}}
-{{--                                            <div class="category_item_title">Tên danh mục</div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="category_buttons category_info_col">--}}
-{{--                                            <div class="category_item_title">Chức năng</div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
+                               {{-- <li class="category_item clearfix">
+                                   <div
+                                       class="category_item_info d-flex flex-md-row flex-column justify-content-between" style="padding-top: 18px">
+                                       <div class="category_item_name category_info_col">
+                                           <div class="category_item_title">Tên danh mục</div>
+                                       </div>
+                                       <div class="category_buttons category_info_col">
+                                           <div class="category_item_title">Chức năng</div>
+                                       </div>
+                                 </div>
+                               </li> --}}
                                 @for ($i = 1; $i <= 5; $i++)
                                     <li class="category_item clearfix">
                                         <div

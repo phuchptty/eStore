@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* Category */
 .category_section {
     width: 100%;
     padding-top: 67px;
@@ -31,7 +32,7 @@
 .category_item_info {
     width: calc(100% - 30px);
     float: left;
-    padding-top: 18px;
+    /* padding-top: 18px; */
     padding-bottom: 15px;
 }
 
@@ -67,6 +68,7 @@
     transform: translateY(4px);
 }
 
+/* Button */
 .category_buttons {
     text-align: right;
 }
@@ -122,4 +124,119 @@
 
 .category_button_delete:hover {
     color: #fff;
+}
+
+/* Form */
+
+.category_form
+{
+	padding-top: 85px;
+}
+.category_form_container
+{
+
+}
+.category_form_title
+{
+	font-size: 30px;
+	font-weight: 500;
+	margin-bottom: 37px;
+}
+.category_form_inputs
+{
+	margin-bottom: 30px;
+}
+.input_field
+{
+	width: calc((100% - 60px) / 3);
+	height: 50px;
+	padding-left: 25px;
+	border: solid 1px #e5e5e5;
+	border-radius: 5px;
+	outline: none;
+	color: #0e8ce4;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.input_field:focus,
+.text_field:focus
+{
+	border-color: #b2b2b2;
+}
+.input_field:hover,
+.text_field:hover
+{
+	border-color: #b2b2b2;
+}
+.input_field::-webkit-input-placeholder,
+.text_field::-webkit-input-placeholder
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,0.3);
+}
+.input_field:-moz-placeholder,
+.text_field:-moz-placeholder
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,0.3);
+}
+.input_field::-moz-placeholder,
+.text_field::-moz-placeholder
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,0.3);
+}
+.input_field:-ms-input-placeholder,
+.text_field:-ms-input-placeholder
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,0.3);
+}
+.input_field::input-placeholder,
+.text_field::input-placeholder
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,0.3);
+}
+.text_field
+{
+	width: 100%;
+	height: 160px;
+	padding-left: 25px;
+	padding-top: 15px;
+	border: solid 1px #e5e5e5;
+	border-radius: 5px;
+	color: #0e8ce4;
+	outline: none;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.category_submit_button
+{
+	padding-left: 35px;
+	padding-right: 35px;
+	color: #FFFFFF;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin-top: 24px;
+}
+.panel
+{
+	width: 100%;
+	height: 50px;
+	background: #fafafa;
+	margin-top: 120px;
 }

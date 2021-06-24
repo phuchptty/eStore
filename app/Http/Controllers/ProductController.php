@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,6 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $categories = Category::get();
+
         return view('admin.products.create');
     }
 
@@ -34,7 +39,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return back();
+        $title = $request->title;
+        $summary = $request->summary;
+        $quantity = $request->quantity;
+        $price = $request->price;
+
+        Product::create([
+            'title' => $title,
+            'user_id' => Auth::user()->id,
+            'quantity' => $quantity,
+            'price' => $price
+        ]);
+
+        return view('admin.products.index');
     }
 
     /**
@@ -55,7 +72,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.products.detail');
+        return view('admin.products.update');
     }
 
     /**
@@ -67,7 +84,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back();
+        $title = $request->title;
+        $summary = $request->summary;
+        $quantity = $request->quantity;
+        $price = $request->price;
+
+        Product::where('id', $id)->update([
+            'title' => $title,
+            'user_id' => Auth::user()->id,
+            'quantity' => $quantity,
+            'price' => $price
+        ]);
+
+        return view('admin.products.index');
     }
 
     /**
@@ -78,6 +107,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        Product::where('id', $id)->delete();
+
         return back();
     }
 }

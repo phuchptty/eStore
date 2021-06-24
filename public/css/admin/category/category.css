@@ -2,41 +2,57 @@
 
 .category_section {
     width: 100%;
-    padding-top: 93px;
+    padding-top: 67px;
     padding-bottom: 111px;
 }
+
 .category_title {
     font-size: 30px;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
 }
+
 .category_items {
     margin-top: 67px;
 }
+
 .category_list {
-    border: solid 1px #e8e8e8;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
+
 .category_item {
+    border: solid 1px #e8e8e8;
     width: 100%;
     padding: 15px;
     padding-right: 46px;
 }
+
 .category_item_info {
-    width: calc(100% - 133px);
+    width: calc(100% - 30px);
     float: left;
     padding-top: 18px;
+    padding-bottom: 15px;
 }
+
 .category_item_name {
     margin-left: 7.53%;
 }
+
 .category_item_title {
     font-size: 14px;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.5);
 }
+
 .category_item_text {
     font-size: 18px;
     margin-top: 35px;
+}
+
+.category_item_buttons {
+    margin-top: 18px;
+    font-size: 18px;
 }
 .category_item_text span {
     display: inline-block;
@@ -52,9 +68,9 @@
 }
 
 .category_buttons {
-    margin-top: 60px;
     text-align: right;
 }
+
 .category_button_create {
     display: inline-block;
     border: none;
@@ -69,28 +85,26 @@
     cursor: pointer;
     vertical-align: top;
 }
+
 .category_button_create:hover {
     color: #fff;
 }
+
 .category_button_update {
     display: inline-block;
-    border: none;
     font-size: 18px;
     font-weight: 400;
     line-height: 48px;
     color: rgba(0, 0, 0, 0.5);
     background: #ffffff;
     border: solid 1px #b2b2b2;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
     outline: none;
     cursor: pointer;
     margin-right: 26px;
 }
-.category_button_update:hover {
-    border-color: #0e8ce4;
-    color: #0e8ce4;
-}
+
 .category_button_delete {
     display: inline-block;
     border: none;
@@ -98,10 +112,14 @@
     font-weight: 400;
     line-height: 48px;
     color: #ffffff;
-    background: red;
+    background: #E65C68;
     padding-left: 35px;
     padding-right: 35px;
     outline: none;
     cursor: pointer;
     vertical-align: top;
+}
+
+.category_button_delete:hover {
+    color: #fff;
 }

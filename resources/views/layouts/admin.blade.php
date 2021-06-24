@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSRF Token -->
@@ -33,26 +33,27 @@
 </head>
 
 <body>
-    <div id="app">
-        @include('partial.admin.header')
+<div id="app">
+    @include('partial.admin.header')
 
+    <main class="site-main">
         @yield('content')
+    </main>
+    @include('partial.admin.footer')
+</div>
 
-        @include('partial.admin.footer')
-    </div>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ asset('plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ asset('plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ asset('plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ asset('plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('plugins/greensock/TweenMax.min.js') }}"></script>
-    <script src="{{ asset('plugins/greensock/TimelineMax.min.js') }}"></script>
-    <script src="{{ asset('plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
-    <script src="{{ asset('plugins/greensock/animation.gsap.min.js') }}"></script>
-    <script src="{{ asset('plugins/greensock/ScrollToPlugin.min.js') }}"></script>
-    <script src="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+@yield('js-lib')
 
-    @yield('js-lib')
-
-    @yield('js')
+@yield('js')
 </body>
 
 </html>

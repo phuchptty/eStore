@@ -30,13 +30,13 @@
 
 <body>
     <div id="app">
-        @include('partial.user.header')
+        @include('partial.user._header')
 
         <main class="site-main">
             @yield('content')
         </main>
 
-        @include('partial.user.footer')
+        @include('partial.user._footer')
     </div>
 
     <!-- Scripts -->

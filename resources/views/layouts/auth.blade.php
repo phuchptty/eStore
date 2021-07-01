@@ -28,13 +28,13 @@
 
 <body>
     <div id="app">
-        @include('partial.auth.header')
+        @include('partial.auth._header')
 
         <main class="site-main">
             @yield('content')
         </main>
 
-        @include('partial.auth.footer')
+        @include('partial.auth._footer')
     </div>
 
     <!-- Scripts -->

@@ -53,14 +53,36 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $tags_count
  * @property-read \App\User $users
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereContent($value)
+ * @property string $summary
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSummary($value)
  */
 class Product extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
+        'user_id',
         'title',
+        'meta_title',
+        'slug',
+        'summary',
+        'type',
+        'price',
+        'discount',
         'quantity',
-        'price'
+        'shop',
+        'content',
     ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
 
     public function users()
     {
@@ -94,6 +116,6 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Category', 'product_category');
+        return $this->belongsToMany('App\Models\Category');
     }
 }

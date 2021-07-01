@@ -34,12 +34,13 @@
 
 <body>
 <div id="app">
-    @include('partial.admin.header')
+    @include('partial.admin._header')
 
     <main class="site-main">
         @yield('content')
     </main>
-    @include('partial.admin.footer')
+
+    @include('partial.admin._footer')
 </div>
 
 <!-- Scripts -->

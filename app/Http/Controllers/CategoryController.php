@@ -16,7 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+
+        $categories = Category::with('parentCategory')->get();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -26,7 +29,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::with('parentCategory')->get();
+
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -37,7 +42,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return back();
+        $parent = $request->parent;
+        $title = $request->title;
+
+        Category::create([
+            'parent_id' => $parent,
+            'title' => $title
+        ]);
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -59,7 +72,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.categories.update');
+        $category = Category::findOrFail($id);
+        $categories = Category::with('parentCategory')->get();
+
+        return view('admin.categories.update', compact('categories', 'category'));
     }
 
     /**
@@ -71,7 +87,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back();
+        $parent = $request->parent;
+        $title = $request->title;
+
+        Category::where('id', $id)->update([
+            'parent_id' => $parent,
+            'title' => $title
+        ]);
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -82,6 +106,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        Category::where('id', $id)->delete();
+
         return back();
     }
 }

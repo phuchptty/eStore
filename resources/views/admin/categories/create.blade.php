@@ -18,52 +18,45 @@
                     <div class="category_container">
                         <div class="category_title">
                             <div>
-                                Danh mục
+                                Thêm danh mục
                             </div>
                         </div>
+                        <form action="{{route('admin.category.store')}}" method="POST" class="category_form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="parentSelect">Danh mục cha</label>
 
-                        <div class="category_form">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-10 offset-lg-1">
-                                        <form action="#" id="category_form">
-                                            <div
-                                                class="category_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
-                                                <input type="text" id="category_form_name"
-                                                    class="category_form_name input_field" placeholder="Your name"
-                                                    required="required" data-error="Name is required.">
-                                                <input type="text" id="category_form_email"
-                                                    class="category_form_email input_field" placeholder="Your email"
-                                                    required="required" data-error="Email is required.">
-                                                <input type="text" id="category_form_phone"
-                                                    class="category_form_phone input_field" placeholder="Your phone number">
-                                            </div>
-                                            <div class="category_form_text">
-                                                <textarea id="category_form_message"
-                                                    class="text_field category_form_message" name="message" rows="4"
-                                                    placeholder="Message" required="required"
-                                                    data-error="Please, write us a message."></textarea>
-                                            </div>
-                                            <div class="category_form_button">
-                                                <button type="submit" class="button category_submit_button">Send
-                                                    Message</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="panel"></div>
+                                <select class="form-control" style="margin: 0" id="parentSelect" name="parent">
+                                    <option value="">Không có</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">
+                                            @if($category->parentCategory)
+                                                @include('admin.categories.parent_category', ['parent_category' => $category->parentCategory])
+                                            @endif
+                                            {{ $category->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="title">Tên danh mục</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="">
+                            </div>
+                            <div class="text-right" style="padding-top: 35px">
+                                <a href="{{route('admin.category.index') }}" class="btn btn-light">Hủy</a>
+                                <button type="submit" class="btn btn-primary">Hoàn tất</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    @endsection
+@endsection
 
-    @section('js-lib')
+@section('js-lib')
 
-    @endsection
+@endsection
 
-    @section('js')
+@section('js')
 
-    @endsection
+@endsection

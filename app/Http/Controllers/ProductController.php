@@ -26,9 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
+        $categories = Category::with('parentCategory')->get();
 
-        return view('admin.products.create');
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -43,15 +43,20 @@ class ProductController extends Controller
         $summary = $request->summary;
         $quantity = $request->quantity;
         $price = $request->price;
+        $category = $request->category;
 
-        Product::create([
+        $product = Product::create([
             'title' => $title,
             'user_id' => Auth::user()->id,
+            'summary' => $summary,
+            'type' => 1,
             'quantity' => $quantity,
             'price' => $price
         ]);
 
-        return view('admin.products.index');
+        $product->categories()->attach($category);
+
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -61,7 +66,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return view('admin.products.detail');
+        $product = Product::findOrFail($id);
+
+        return view('admin.products.detail', compact('product'));
     }
 
     /**
@@ -72,7 +79,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.products.update');
+        $product = Product::findOrFail($id);
+        $categories = Category::with('parentCategory')->get();
+
+        return view('admin.products.update', compact('categories', 'product'));
     }
 
     /**
@@ -96,7 +106,7 @@ class ProductController extends Controller
             'price' => $price
         ]);
 
-        return view('admin.products.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**

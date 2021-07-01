@@ -33,12 +33,34 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read Category $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Category[] $children
+ * @property-read int|null $children_count
  */
 class Category extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'parent_id',
+        'title',
+        'meta_title',
+        'slug',
+        'content'
+    ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product', 'product_category');
+        return $this->belongsToMany('App\Models\Product');
     }
 
     public function parent()
@@ -46,8 +68,18 @@ class Category extends Model
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
 
-    public function child()
+    public function children()
     {
         return $this->hasMany('App\Models\Category', 'parent_id');
+    }
+
+    public function childrenCategories()
+    {
+        return $this->children()->with('childrenCategories');
+    }
+
+    public function parentCategory()
+    {
+        return $this->parent()->with('parentCategory');
     }
 }

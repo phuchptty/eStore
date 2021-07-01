@@ -33,9 +33,14 @@
                         <div class="form-group">
                             <label for="category">Danh mục sản phẩm</label>
                             <select class="form-control" style="margin: 0" id="category" name="category">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">
+                                        @if($category->parentCategory)
+                                            @include('admin.categories.parent_category', ['parent_category' => $category->parentCategory])
+                                        @endif
+                                        {{ $category->title }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 

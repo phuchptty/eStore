@@ -16,10 +16,10 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->admin) {
+        if (Auth::user() &&  Auth::user()->admin == 1) {
             return $next($request);
-        } else {
-            return back();
         }
+
+        return redirect('/');
     }
 }

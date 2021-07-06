@@ -1331,8 +1331,8 @@ select option
 .product_name
 {
 	font-size: 30px;
-	font-weight: 500;
-	margin-top: 11px;
+	font-weight: 600;
+	margin-top: 10px;
 }
 .product_rating
 {
@@ -1348,7 +1348,7 @@ select option
 }
 .product_text
 {
-	margin-top: 27px;
+	margin-top: 25px;
 }
 .product_text p:last-child
 {
@@ -1356,7 +1356,7 @@ select option
 }
 .order_info
 {
-	margin-top: 53px;
+	margin-top: 50px;
 }
 .product_quantity
 {
@@ -1544,17 +1544,27 @@ select option
 {
 	margin-left: auto;
 }
+.product_price_container {
+    margin-top: 30px;
+}
+.product_price_discount {
+	font-size: 20px;
+	font-weight: 600;
+    color: #99a0ad;
+    text-decoration: line-through;
+	clear: left;
+}
 .product_price
 {
 	display: inline-block;
 	font-size: 24px;
-	font-weight: 500;
-	margin-top: 75px;
+	font-weight: 700;
+    color: #f9495f;
 	clear: left;
 }
 .button_container
 {
-	margin-top: 43px;
+	margin-top: 40px;
 }
 .cart_button
 {

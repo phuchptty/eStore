@@ -15,18 +15,116 @@
     <!-- Banner -->
 
     <div class="banner">
-        <div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
+        <div class="banner_background" style="background-image:url(https://mediaonlinevn.com/wp-content/uploads/2020/06/200629-asus-rog-zephyrus-g14-03_resize.jpg)"></div>
         <div class="container fill_height">
             <div class="row fill_height">
-                <div class="banner_product_image"><img src="images/banner_product.png" alt=""></div>
+                <div class="banner_product_image">
+                    {{-- <img src="{{ asset('storage/uploads/' . $banner1->image) }}" alt=""> --}}
+                </div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
                         <h1 class="banner_text">new era of smartphones</h1>
-                        <div class="banner_price"><span>$530</span>$460 {{ $test }}</div>
-                        <div class="banner_product_name">Apple Iphone 6s</div>
-                        <div class="button banner_button"><a href="#">Shop Now</a></div>
+                        <div class="banner_price">
+                            <span>47.499.000 đ</span><br>47.499.000 đ
+                        </div>
+                        <div class="banner_product_name">{{ $banner1->title }}</div>
+                        <div class="button banner_button"><a href="#">Xem ngay</a></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Characteristics -->
+
+    <div class="characteristics">
+        <div class="container">
+            <div class="row">
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('images/char_1.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Giao hàng nhanh trên toàn quốc</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('images/char_2.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Hoàn tiền 200% nếu có hàng giả</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('images/char_3.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Hỗ trợ trả góp 0%, trả trước 0đ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Char. Item -->
+                <div class="col-lg-3 col-md-6 char_col">
+
+                    <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                        <div class="char_icon"><img src="{{ asset('images/char_4.png') }}" alt=""></div>
+                        <div class="char_content">
+                            <div class="char_title">Giảm giá hấp dẫn từ 30%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner -->
+
+    <div class="banner_2">
+        <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
+        <div class="banner_2_container">
+            <div class="banner_2_dots"></div>
+            <!-- Banner 2 Slider -->
+
+            <div class="owl-carousel owl-theme banner_2_slider">
+
+                <!-- Banner 2 Slider Item -->
+
+                @foreach ($banner2 as $banner)
+                    <div class="owl-item">
+                        <div class="banner_2_item">
+                            <div class="container fill_height">
+                                <div class="row fill_height">
+                                    <div class="col-lg-4 col-md-6 fill_height">
+                                        <div class="banner_2_content">
+                                            <div class="banner_2_category">Laptops</div>
+                                            <div class="banner_2_title">{{ $banner->title }}</div>
+                                            <div class="banner_2_text">{!! $banner->summary !!}</div>
+                                            <div class="button banner_2_button"><a href="{{ route('user.product.detail', ['id' => $banner->id]) }}">Khám phá</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 fill_height">
+                                        <div class="banner_2_image_container">
+                                            <div class="banner_2_image"><img
+                                                    src="{{ asset('storage/uploads/' . $banner->image) }}" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div>
@@ -38,306 +136,111 @@
             <div class="row">
                 <div class="col">
                     <div class="tabbed_container">
-                        <div class="tabs clearfix tabs-right">
-                            <div class="new_arrivals_title">Hot New Arrivals</div>
-                            <ul class="clearfix">
-                                <li class="active">Featured</li>
-                                <li>Audio & Video</li>
-                                <li>Laptops & Computers</li>
-                            </ul>
-                            <div class="tabs_line"><span></span></div>
-                        </div>
+                        <div class="new_arrivals_title">Sản phẩm mới về</div>
+                        <div class="tabs_line"></div>
                         <div class="row">
-                            <div class="col-lg-9" style="z-index: 1;">
-
+                            <div class="col-lg-12" style="z-index: 1;">
                                 <!-- Product Panel -->
                                 <div class="product_panel panel active">
                                     <div class="arrivals_slider slider">
                                         <!-- Slider Item -->
-                                        @for ($i = 0; $i <= 10; $i++)
+                                        @foreach ($newProducts as $newProduct)
                                             <div class="arrivals_slider_item">
                                                 <div class="border_active"></div>
                                                 <div
                                                     class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
                                                     <div
                                                         class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                        <img src="images/new_1.jpg" alt="">
+                                                        <img src="{{ asset('storage/uploads/' . $newProduct->image) }}"
+                                                            alt="">
                                                     </div>
                                                     <div class="product_content">
-                                                        <div class="product_price">$225</div>
+                                                        <div class="product_price">{{  formatNumber($newProduct->price) }} đ</div>
                                                         <div class="product_name">
                                                             <div><a
-                                                                    href="{{ route('user.product.detail', ['id' => 1]) }}">Astro
-                                                                    M2
-                                                                    Black</a></div>
-                                                        </div>
-                                                        <div class="product_extras">
-                                                            {{-- <div class="product_color">
-                                                                <input type="radio" checked name="product_color"
-                                                                    style="background:#b19c83">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#000000">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#999999">
-                                                            </div> --}}
-                                                            <button class="product_cart_button">Add to Cart</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                                    <ul class="product_marks">
-                                                        <li class="product_mark product_discount">-25%</li>
-                                                        <li class="product_mark product_new">new</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                    <div class="arrivals_slider_dots_cover"></div>
-                                </div>
-
-                                <!-- Product Panel -->
-                                <div class="product_panel panel">
-                                    <div class="arrivals_slider slider">
-                                        <!-- Slider Item -->
-                                        @for ($i = 0; $i <= 10; $i++)
-                                            <div class="arrivals_slider_item">
-                                                <div class="border_active"></div>
-                                                <div
-                                                    class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                                    <div
-                                                        class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                        <img src="images/new_4.jpg" alt="">
-                                                    </div>
-                                                    <div class="product_content">
-                                                        <div class="product_price">$225</div>
-                                                        <div class="product_name">
-                                                            <div><a href="">Huawei
-                                                                    MediaPad...</a></div>
-                                                        </div>
-                                                        <div class="product_extras">
-                                                            <div class="product_color">
-                                                                <input type="radio" checked name="product_color"
-                                                                    style="background:#b19c83">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#000000">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#999999">
+                                                                    href="{{ route('user.product.detail', ['id' => $newProduct->id]) }}">{{ $newProduct->title }}</a>
                                                             </div>
-                                                            <button class="product_cart_button">Add to Cart</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                                    <ul class="product_marks">
-                                                        <li class="product_mark product_discount"></li>
-                                                        <li class="product_mark product_new">new</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                    <div class="arrivals_slider_dots_cover"></div>
-                                </div>
-
-                                <!-- Product Panel -->
-                                <div class="product_panel panel">
-                                    <div class="arrivals_slider slider">
-                                        <!-- Slider Item -->
-                                        @for ($i = 0; $i <= 10; $i++)
-                                            <div class="arrivals_slider_item">
-                                                <div class="border_active"></div>
-                                                <div
-                                                    class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                                    <div
-                                                        class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                        <img src="images/new_1.jpg" alt="">
-                                                    </div>
-                                                    <div class="product_content">
-                                                        <div class="product_price">$225</div>
-                                                        <div class="product_name">
-                                                            <div><a href="product.html">Huawei MediaPad...</a></div>
                                                         </div>
                                                         <div class="product_extras">
-                                                            <div class="product_color">
-                                                                <input type="radio" checked name="product_color"
-                                                                    style="background:#b19c83">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#000000">
-                                                                <input type="radio" name="product_color"
-                                                                    style="background:#999999">
-                                                            </div>
-                                                            <button class="product_cart_button">Add to Cart</button>
+                                                            <button class="product_cart_button">Thêm vào giỏ hàng</button>
                                                         </div>
                                                     </div>
-                                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                     <ul class="product_marks">
-                                                        <li class="product_mark product_discount">-25%</li>
-                                                        <li class="product_mark product_new">new</li>
+                                                        <li class="product_mark product_new">mới</li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                        @endfor
+                                        @endforeach
+                                        <!-- End Slider Item -->
                                     </div>
                                     <div class="arrivals_slider_dots_cover"></div>
                                 </div>
-
+                                <!-- End Product Panel -->
                             </div>
-
-                            <div class="col-lg-3">
-                                <div class="arrivals_single clearfix">
-                                    <div class="d-flex flex-column align-items-center justify-content-center">
-                                        <div class="arrivals_single_image"><img src="images/new_single.png" alt=""></div>
-                                        <div class="arrivals_single_content">
-                                            <div class="arrivals_single_category"><a href="#">Smartphones</a></div>
-                                            <div class="arrivals_single_name_container clearfix">
-                                                <div class="arrivals_single_name"><a href="#">LUNA Smartphone</a></div>
-                                                <div class="arrivals_single_price text-right">$379</div>
-                                            </div>
-                                            <div class="rating_r rating_r_4 arrivals_single_rating">
-                                                <i></i><i></i><i></i><i></i><i></i>
-                                            </div>
-                                            <form action="#"><button class="arrivals_single_button">Add to Cart</button>
-                                            </form>
-                                        </div>
-                                        <div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i>
-                                        </div>
-                                        <ul class="arrivals_single_marks product_marks">
-                                            <li class="arrivals_single_mark product_mark product_new">new</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Best Sellers -->
+    <!-- Recently Viewed -->
 
-    <div class="best_sellers">
+    @if(count($recentlyViewed) > 0)
+    <div class="viewed">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="tabbed_container">
-                        <div class="tabs clearfix tabs-right">
-                            <div class="new_arrivals_title">Hot Best Sellers</div>
-                            <ul class="clearfix">
-                                <li class="active">Top 20</li>
-                                <li>Audio & Video</li>
-                                <li>Laptops & Computers</li>
-                            </ul>
-                            <div class="tabs_line"><span></span></div>
-                        </div>
-
-                        <div class="bestsellers_panel panel active">
-
-                            <!-- Best Sellers Slider -->
-
-                            <div class="bestsellers_slider slider">
-
-                                <!-- Best Sellers Item -->
-                                @for ($i = 0; $i <= 10; $i++)
-                                    <div class="bestsellers_item discount">
-                                        <div
-                                            class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-                                            <div class="bestsellers_image"><img src="images/best_1.png" alt=""></div>
-                                            <div class="bestsellers_content">
-                                                <div class="bestsellers_category"><a href="#">Headphones</a></div>
-                                                <div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a>
-                                                </div>
-                                                <div class="rating_r rating_r_4 bestsellers_rating">
-                                                    <i></i><i></i><i></i><i></i><i></i>
-                                                </div>
-                                                <div class="bestsellers_price discount">$225<span>$300</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-                                        <ul class="bestsellers_marks">
-                                            <li class="bestsellers_mark bestsellers_discount">-25%</li>
-                                            <li class="bestsellers_mark bestsellers_new">new</li>
-                                        </ul>
-                                    </div>
-                                @endfor
-
-                            </div>
-                        </div>
-
-                        <div class="bestsellers_panel panel">
-
-                            <!-- Best Sellers Slider -->
-
-                            <div class="bestsellers_slider slider">
-
-                                <!-- Best Sellers Item -->
-                                @for ($i = 0; $i <= 10; $i++)
-                                    <div class="bestsellers_item discount">
-                                        <div
-                                            class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-                                            <div class="bestsellers_image"><img src="images/best_2.png" alt=""></div>
-                                            <div class="bestsellers_content">
-                                                <div class="bestsellers_category"><a href="#">Headphones</a></div>
-                                                <div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a>
-                                                </div>
-                                                <div class="rating_r rating_r_4 bestsellers_rating">
-                                                    <i></i><i></i><i></i><i></i><i></i>
-                                                </div>
-                                                <div class="bestsellers_price discount">$225<span>$300</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-                                        <ul class="bestsellers_marks">
-                                            <li class="bestsellers_mark bestsellers_discount">-25%</li>
-                                            <li class="bestsellers_mark bestsellers_new">new</li>
-                                        </ul>
-                                    </div>
-                                @endfor
-
-                            </div>
-                        </div>
-
-                        <div class="bestsellers_panel panel">
-
-                            <!-- Best Sellers Slider -->
-
-                            <div class="bestsellers_slider slider">
-
-                                <!-- Best Sellers Item -->
-                                @for ($i = 0; $i <= 10; $i++)
-                                    <div class="bestsellers_item discount">
-                                        <div
-                                            class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-                                            <div class="bestsellers_image"><img src="images/best_2.png" alt=""></div>
-                                            <div class="bestsellers_content">
-                                                <div class="bestsellers_category"><a href="#">Headphones</a></div>
-                                                <div class="bestsellers_name"><a href="product.html">Xiaomi Redmi Note 4</a>
-                                                </div>
-                                                <div class="rating_r rating_r_4 bestsellers_rating">
-                                                    <i></i><i></i><i></i><i></i><i></i>
-                                                </div>
-                                                <div class="bestsellers_price discount">$225<span>$300</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-                                        <ul class="bestsellers_marks">
-                                            <li class="bestsellers_mark bestsellers_discount">-25%</li>
-                                            <li class="bestsellers_mark bestsellers_new">new</li>
-                                        </ul>
-                                    </div>
-                                @endfor
-
-                            </div>
+                    <div class="viewed_title_container">
+                        <h3 class="viewed_title">Đã xem gần đây</h3>
+                        <div class="viewed_nav_container">
+                            <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                            <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
 
+                    <div class="viewed_slider_container">
+
+                        <!-- Recently Viewed Slider -->
+
+                        <div class="owl-carousel owl-theme viewed_slider">
+
+                            <!-- Recently Viewed Item -->
+                            @foreach ($recentlyViewed as $product)
+                                <div class="owl-item">
+                                    <div
+                                        class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                        <div class="viewed_image"><img
+                                                src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                                        <div class="viewed_content text-center">
+
+                                            <div class="viewed_price">
+                                                @if($product->discount > 0)
+                                                    <span>{{ formatNumber($product->price) }} đ</span>
+                                                @else
+                                                    &nbsp;
+                                                @endif
+                                            </div>
+
+                                            <div class="viewed_price">{{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ</div>
+                                            <div class="viewed_name"><a href="{{ route('user.product.detail', ['id' => $product->id]) }}">{{ $product->title }}</a></div>
+                                        </div>
+                                        <ul class="item_marks">
+                                            @if($product->discount > 0)
+                                                <li class="item_mark item_discount">-{{ formatNumber($product->discount) }}%</li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    @endif
 
     <!-- Brands -->
 
@@ -353,35 +256,35 @@
 
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_1.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_1.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_2.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_2.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_3.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_3.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_4.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_4.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_5.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_5.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_6.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_6.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_7.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_7.jpg') }}" alt=""></div>
                             </div>
                             <div class="owl-item">
                                 <div class="brands_item d-flex flex-column justify-content-center"><img
-                                        src="images/brands_8.jpg" alt=""></div>
+                                        src="{{ asset('images/brands_8.jpg') }}" alt=""></div>
                             </div>
 
                         </div>

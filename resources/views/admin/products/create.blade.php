@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Tạo mới sản phẩm')
 
 @section('css-lib')
-<link rel="stylesheet" href="{{ asset('css/admin/product/product.css') }}">
-<link rel="stylesheet" href="{{ asset('css/contact_styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/product/product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact_styles.css') }}">
 @endsection
 
 @section('css')
@@ -23,7 +23,7 @@
                 <div class="contact_form_container">
                     <div class="contact_form_title">Thêm sản phẩm</div>
 
-                    <form action="#" id="contact_form" action="{{ route('admin.product.store') }}" method="POST">
+                    <form id="contact_form" action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="title">Tiêu đề</label>
@@ -50,19 +50,42 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="discount">Giảm giá</label>
+                            <input type="number" class="form-control" id="discount" name="discount">
+                        </div>
+
+                        <div class="form-group">
                             <label for="quantity">Số lượng</label>
                             <input type="number" class="form-control" id="quantity" name="quantity">
                         </div>
 
+                        <label>Quảng cáo</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="banner1" name="banner1">
+                            <label class="form-check-label" for="banner1">Banner 1</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="banner2" name="banner2">
+                            <label class="form-check-label" for="banner2">Banner 2</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="active" name="active" checked>
+                            <label class="form-check-label" for="active">Active</label>
+                        </div>
+
                         <div class="form-group">
-                            <label for="images">Hình ảnh</label>
-                            <input type="file" class="form-control-file" id="images">
+                            <label for="image">Hình ảnh</label>
+                            <input type="file" class="form-control-file" id="image" name="image">
                         </div>
 
                         <div class="form-group">
                             <label for="summary">Mô tả</label>
-                            <textarea id="summary" name="summary"></textarea>
+                            <textarea id="summary" name="summary" style="width: 100%; height: 100px; padding: 10px"></textarea>
                         </div>
+
 
                         <div class="contact_form_button">
                             <button type="submit" class="button contact_submit_button">Lưu</button>
@@ -78,11 +101,9 @@
 @endsection
 
 @section('js-lib')
-<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+
 @endsection
 
 @section('js')
-<script>
-    ClassicEditor.create(document.querySelector('#summary'));
-</script>
+
 @endsection

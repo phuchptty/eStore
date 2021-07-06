@@ -16,8 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        $categories = Category::with('parentCategory')->get();
+        $categories = Category::where('active', 1)->with('parentCategory')->paginate(2);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -29,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::with('parentCategory')->get();
+        $categories = Category::where('active', 1)->with('parentCategory')->get();
 
         return view('admin.categories.create', compact('categories'));
     }
@@ -44,10 +43,12 @@ class CategoryController extends Controller
     {
         $parent = $request->parent;
         $title = $request->title;
+        $active = $request->active == 'on' ? 1 : 0;
 
         Category::create([
             'parent_id' => $parent,
-            'title' => $title
+            'title' => $title,
+            'active' => $active
         ]);
 
         return redirect()->route('admin.category.index');
@@ -89,10 +90,12 @@ class CategoryController extends Controller
     {
         $parent = $request->parent;
         $title = $request->title;
+        $active = $request->active == 'on' ? 1 : 0;
 
         Category::where('id', $id)->update([
             'parent_id' => $parent,
-            'title' => $title
+            'title' => $title,
+            'active' => $active
         ]);
 
         return redirect()->route('admin.category.index');

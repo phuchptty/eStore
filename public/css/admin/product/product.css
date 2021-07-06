@@ -37,7 +37,7 @@
     padding-top: 18px;
 }
 .product_item_name {
-    margin-left: 7.53%;
+    margin-left: 3%;
 }
 .product_item_title {
     font-size: 14px;
@@ -64,6 +64,9 @@
     text-align: right;
 }
 .product_item_total {
+    text-align: right;
+}
+.product_item_quantity {
     text-align: right;
 }
 .order_total {

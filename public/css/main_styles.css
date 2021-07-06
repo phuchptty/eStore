@@ -925,7 +925,7 @@ select option {
 *********************************/
 
 .page_menu {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     -ms-transition: all 500ms ease;
@@ -1087,13 +1087,13 @@ select option {
 .banner_price {
     font-size: 30px;
     color: #df3b3b;
-    margin-top: 87px;
+    margin-top: 80px;
 }
 .banner_price span {
     display: inline-block;
     position: relative;
     color: #7e8285;
-    margin-right: 14px;
+    font-size: 24px;
 }
 .banner_price span::after {
     display: block;
@@ -1117,8 +1117,12 @@ select option {
 .banner_product_image {
     position: absolute;
     top: -5px;
-    right: -52px;
+    right: -60px;
     z-index: 0;
+}
+.banner_product_image img {
+    width: 521px;
+    height: 459px;
 }
 
 /*********************************
@@ -1135,6 +1139,7 @@ select option {
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
     border: solid 1px #e8e8e8;
     padding-left: 36px;
+    padding-right: 36px;
 }
 .char_icon {
     margin-right: 24px;
@@ -1144,7 +1149,7 @@ select option {
 }
 .char_title {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     color: #000000;
 }
 .char_subtitle {
@@ -1453,7 +1458,8 @@ select option {
     z-index: 10;
 }
 .product_image {
-    width: 100%;
+    /* width: 100%; */
+    width: 115px;
     height: 115px;
 }
 .product_image img {
@@ -1483,13 +1489,16 @@ select option {
     overflow: hidden;
 }
 .product_name div {
-    width: 100%;
+    width: 90%;
 }
 .product_name div a {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    text-transform: uppercase;
+    overflow: hidden;
+    /* padding: 15px; */
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
     -ms-transition: all 200ms ease;
@@ -1856,7 +1865,7 @@ select option {
     color: rgba(0, 0, 0, 0.5);
 }
 .banner_2_title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 500;
     color: #000000;
     margin-top: 11px;
@@ -1961,12 +1970,12 @@ select option {
     padding-bottom: 96px;
 }
 .new_arrivals_title {
-    position: absolute;
+    /* position: absolute;
     left: 0;
-    top: -7px;
+    top: -7px; */
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: -29px;
+    /* margin-bottom: -29px; */
 }
 .arrivals_slider {
     width: 100%;

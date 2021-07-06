@@ -16,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $products = Product::where('active', 1)->paginate(10);
+
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -41,20 +43,33 @@ class ProductController extends Controller
     {
         $title = $request->title;
         $summary = $request->summary;
-        $quantity = $request->quantity;
+        $image = $request->image;
         $price = $request->price;
+        $quantity = $request->quantity;
+        $discount = $request->discount;
+        $banner1 = $request->banner1 == 'on' ? 1 : 0;
+        $banner2 = $request->banner2 == 'on' ? 1 : 0;
+        $active = $request->active == 'on' ? 1 : 0;
         $category = $request->category;
 
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+
         $product = Product::create([
-            'title' => $title,
             'user_id' => Auth::user()->id,
+            'title' => $title,
             'summary' => $summary,
-            'type' => 1,
+            'image' => $fileName,
+            'price' => $price,
             'quantity' => $quantity,
-            'price' => $price
+            'discount' => $discount,
+            'banner_1' => $banner1,
+            'banner_2' => $banner2,
+            'active' => $active
         ]);
 
         $product->categories()->attach($category);
+
+        $request->image->storeAs('uploads', $fileName, 'public');
 
         return redirect()->route('admin.product.index');
     }
@@ -96,15 +111,31 @@ class ProductController extends Controller
     {
         $title = $request->title;
         $summary = $request->summary;
-        $quantity = $request->quantity;
+        $image = $request->image;
         $price = $request->price;
+        $quantity = $request->quantity;
+        $discount = $request->discount;
+        $banner1 = $request->banner1;
+        $banner2 = $request->banner2;
+        $active = $request->active;
+        $category = $request->category;
+
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
 
         Product::where('id', $id)->update([
-            'title' => $title,
             'user_id' => Auth::user()->id,
+            'title' => $title,
+            'summary' => $summary,
+            'image' => $fileName,
+            'price' => $price,
             'quantity' => $quantity,
-            'price' => $price
+            'discount' => $discount,
+            'banner_1' => $banner1,
+            'banner_2' => $banner2,
+            'active' => $active
         ]);
+
+        $request->image->storeAs('uploads', $fileName, 'public');
 
         return redirect()->route('admin.product.index');
     }

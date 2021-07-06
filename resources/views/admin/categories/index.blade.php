@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Danh sách danh mục')
 
 @section('css-lib')
     <link rel="stylesheet" href="{{ asset('css/admin/category/category.css') }}">
@@ -63,6 +63,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="shop_page_nav d-flex flex-row">
+                {!! $categories->links() !!}
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Cập nhật sản phẩm')
 
 @section('css-lib')
     <link rel="stylesheet" href="{{ asset('css/admin/category/category.css') }}">

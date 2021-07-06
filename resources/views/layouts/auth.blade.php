@@ -18,8 +18,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}">
 
     @yield('css-lib')
 

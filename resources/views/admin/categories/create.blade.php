@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Tạo mới danh mục')
 
 @section('css-lib')
     <link rel="stylesheet" href="{{ asset('css/admin/category/category.css') }}">
@@ -38,10 +38,17 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="title">Tên danh mục</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="">
                             </div>
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="active" name="active" checked>
+                                <label class="form-check-label" for="active">Active</label>
+                            </div>
+
                             <div class="text-right" style="padding-top: 35px">
                                 <a href="{{route('admin.category.index') }}" class="btn btn-light">Hủy</a>
                                 <button type="submit" class="btn btn-primary">Hoàn tất</button>

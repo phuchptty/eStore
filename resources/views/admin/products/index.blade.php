@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Danh sách sản phẩm')
 
 @section('css-lib')
 <link rel="stylesheet" href="{{ asset('css/admin/product/product.css') }}">
@@ -26,50 +26,51 @@
                         </div>
                     </div>
 
-                    <div class="product_items">
-                        <ul class="product_list">
-                            @for ($i = 1; $i <= 5; $i++)
-                            <li class="product_item clearfix">
-                                <div class="product_item_image"><img src="{{ asset('images/shopping_cart.jpg') }}"
-                                        alt="">
-                                </div>
-                                <div class="product_item_info d-flex flex-md-row flex-column justify-content-between">
-                                    <div class="product_item_name product_info_col">
-                                        <div class="product_item_title">Tên sản phẩm</div>
-                                        <div class="product_item_text">MacBook Air 13</div>
+                    @if(count($products) > 0)
+                        <div class="product_items">
+                            <ul class="product_list">
+                                @foreach($products as $product)
+                                <li class="product_item clearfix">
+                                    <div class="product_item_image"><img src="{{ asset('storage/uploads/' . $product->image) }}"
+                                            alt="">
                                     </div>
-                                    <div class="product_item_color product_info_col">
-                                        <div class="product_item_title">Màu sắc</div>
-                                        <div class="product_item_text"><span
-                                                style="background-color:#999999;"></span>Silver</div>
-                                    </div>
-                                    <div class="product_item_quantity product_info_col">
-                                        <div class="product_item_title">Số lượng</div>
-                                        <div class="product_item_text">1</div>
-                                    </div>
-                                    <div class="product_item_price product_info_col">
-                                        <div class="product_item_title">Giá</div>
-                                        <div class="product_item_text">$2000</div>
-                                    </div>
-                                    <div class="product_item_total product_info_col">
-                                        <div class="product_item_title">Chức năng</div>
-                                        <div class="product_item_text">
-                                            <a class="button product_button_update"
-                                                href="{{ route('admin.category.edit', ['id' => '1']) }}">Cập nhật</a>
-                                            <a class="button product_button_delete"
-                                                href="{{ route('admin.category.destroy', ['id' => '1']) }}">Xóa</a>
+                                    <div class="product_item_info d-flex flex-md-row flex-column justify-content-between">
+                                        <div class="product_item_name product_info_col" style="width: 30%; overflow: hidden; white-space: nowrap;">
+                                            <div class="product_item_title">Tên sản phẩm</div>
+                                            <div class="product_item_text">{{ $product->title }}</div>
+                                        </div>
+
+                                        <div class="product_item_price product_info_col" style="width: 20%">
+                                            <div class="product_item_title">Giá</div>
+                                            <div class="product_item_text">{{ $product->price }} đ</div>
+                                        </div>
+
+                                        <div class="product_item_quantity product_info_col" style="width: 10%">
+                                            <div class="product_item_title">Số lượng</div>
+                                            <div class="product_item_text">{{ $product->quantity }}</div>
+                                        </div>
+
+                                        <div class="product_item_total product_info_col" style="width: 30%">
+                                            <div class="product_item_title">Chức năng</div>
+                                            <div class="product_item_text">
+                                                <a class="button product_button_update"
+                                                    href="{{ route('admin.product.edit', ['id' => $product->id]) }}">Sửa</a>
+                                                <a class="button product_button_delete"
+                                                    href="{{ route('admin.product.destroy', ['id' => $product->id]) }}">Xóa</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            @endfor
-                        </ul>
-                    </div>
-                    <div class="order_total">
-                        <div class="order_total_content text-md-right">
-                            Phân trang
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
+
+                        <div class="order_total">
+                            <div class="order_total_content text-md-right">
+                                {!! $products->links() !!}
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

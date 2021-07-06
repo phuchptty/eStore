@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}">
+
     @yield('css-lib')
 
     @yield('css')
@@ -30,7 +32,7 @@
 
 <body>
     <div id="app">
-        @include('partial.user._header')
+        @include('partial.user._header', compact('categories'))
 
         <main class="site-main">
             @yield('content')

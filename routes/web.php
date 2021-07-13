@@ -11,13 +11,23 @@
 |
 */
 
+use App\Http\Controllers\CategoryController;
+
 Auth::routes();
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', 'HomeController@index')->name('user.home.index');
 
     Route::get('/category/{id}', 'CategoryController@show')->name('user.category.show');
+
     Route::get('/product/{id}', 'HomeController@showProduct')->name('user.product.detail');
+    Route::get('/product-category/{id}', 'HomeController@showProductByCategory')->name('user.product.category');
+
+    Route::get('/cart', 'CartController@index')->name('user.cart.index');
+    Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('user.cart.add');
+
+    Route::put('/update-cart', 'CartController@update')->name('user.cart.update');
+    Route::delete('/remove-from-cart', 'CartController@remove')->name('user.cart.remove');
 });
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'role']], function () {
@@ -33,7 +43,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'role']], function 
     Route::get('/update-product/{id}', 'ProductController@edit')->name('admin.product.edit');
     Route::put('/update-product/{id}', 'ProductController@update')->name('admin.product.update');
 
-    Route::delete('/remove-product/{id}', 'ProductController@destroy')->name('admin.product.destroy');
+    Route::get('/remove-product/{id}', 'ProductController@destroy')->name('admin.product.destroy');
 
     // Category
     Route::get('/category', 'CategoryController@index')->name('admin.category.index');

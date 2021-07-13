@@ -15,7 +15,9 @@
     <!-- Banner -->
 
     <div class="banner">
-        <div class="banner_background" style="background-image:url(https://mediaonlinevn.com/wp-content/uploads/2020/06/200629-asus-rog-zephyrus-g14-03_resize.jpg)"></div>
+        <div class="banner_background"
+            style="background-image:url(https://mediaonlinevn.com/wp-content/uploads/2020/06/200629-asus-rog-zephyrus-g14-03_resize.jpg)">
+        </div>
         <div class="container fill_height">
             <div class="row fill_height">
                 <div class="banner_product_image">
@@ -110,7 +112,9 @@
                                             <div class="banner_2_category">Laptops</div>
                                             <div class="banner_2_title">{{ $banner->title }}</div>
                                             <div class="banner_2_text">{!! $banner->summary !!}</div>
-                                            <div class="button banner_2_button"><a href="{{ route('user.product.detail', ['id' => $banner->id]) }}">Khám phá</a></div>
+                                            <div class="button banner_2_button"><a
+                                                    href="{{ route('user.product.detail', ['id' => $banner->id]) }}">Khám
+                                                    phá</a></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 fill_height">
@@ -148,24 +152,39 @@
                                             <div class="arrivals_slider_item">
                                                 <div class="border_active"></div>
                                                 <div
-                                                    class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                                    class="product_item @if($newProduct->discount != 0) discount @endif is_new d-flex flex-column align-items-center justify-content-center text-center">
                                                     <div
                                                         class="product_image d-flex flex-column align-items-center justify-content-center">
                                                         <img src="{{ asset('storage/uploads/' . $newProduct->image) }}"
                                                             alt="">
                                                     </div>
                                                     <div class="product_content">
-                                                        <div class="product_price">{{  formatNumber($newProduct->price) }} đ</div>
+                                                        <div class="product_price">
+                                                            <div>
+                                                                @if($newProduct->discount != 0)
+                                                                <span>{{ formatNumber($newProduct->price) }} đ</span>
+                                                                @else
+                                                                &nbsp;
+                                                                @endif
+                                                            </div>
+                                                            {{ calculatePriceAfterDiscount($newProduct->price, $newProduct->discount) }} đ
+                                                        </div>
                                                         <div class="product_name">
-                                                            <div><a
-                                                                    href="{{ route('user.product.detail', ['id' => $newProduct->id]) }}">{{ $newProduct->title }}</a>
+                                                            <div>
+                                                                <a href="{{ route('user.product.detail', ['id' => $newProduct->id]) }}">{{ $newProduct->title }}</a>
                                                             </div>
                                                         </div>
                                                         <div class="product_extras">
-                                                            <button class="product_cart_button">Thêm vào giỏ hàng</button>
+                                                            <a href="{{ route('user.cart.add', ['id' => $newProduct->id]) }}">
+                                                                <button class="product_cart_button"
+                                                                    >Thêm vào giỏ hàng</button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <ul class="product_marks">
+                                                        @if($newProduct->discount != 0)
+                                                            <li class="product_mark product_discount">-{{ formatNumber($newProduct->discount) }}%</li>
+                                                        @endif
                                                         <li class="product_mark product_new">mới</li>
                                                     </ul>
                                                 </div>
@@ -186,60 +205,65 @@
 
     <!-- Recently Viewed -->
 
-    @if(count($recentlyViewed) > 0)
-    <div class="viewed">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="viewed_title_container">
-                        <h3 class="viewed_title">Đã xem gần đây</h3>
-                        <div class="viewed_nav_container">
-                            <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-                            <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+    @if (count($recentlyViewed) > 0)
+        <div class="viewed">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="viewed_title_container">
+                            <h3 class="viewed_title">Đã xem gần đây</h3>
+                            <div class="viewed_nav_container">
+                                <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                                <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="viewed_slider_container">
+                        <div class="viewed_slider_container">
 
-                        <!-- Recently Viewed Slider -->
+                            <!-- Recently Viewed Slider -->
 
-                        <div class="owl-carousel owl-theme viewed_slider">
+                            <div class="owl-carousel owl-theme viewed_slider">
 
-                            <!-- Recently Viewed Item -->
-                            @foreach ($recentlyViewed as $product)
-                                <div class="owl-item">
-                                    <div
-                                        class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="viewed_image"><img
-                                                src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
-                                        <div class="viewed_content text-center">
+                                <!-- Recently Viewed Item -->
+                                @foreach ($recentlyViewed as $product)
+                                    <div class="owl-item">
+                                        <div
+                                            class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                            <div class="viewed_image"><img
+                                                    src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                                            <div class="viewed_content text-center">
 
-                                            <div class="viewed_price">
-                                                @if($product->discount > 0)
-                                                    <span>{{ formatNumber($product->price) }} đ</span>
-                                                @else
-                                                    &nbsp;
-                                                @endif
+                                                <div class="viewed_price">
+                                                    @if ($product->discount > 0)
+                                                        <span>{{ formatNumber($product->price) }} đ</span>
+                                                    @else
+                                                        &nbsp;
+                                                    @endif
+                                                </div>
+
+                                                <div class="viewed_price">
+                                                    {{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ
+                                                </div>
+                                                <div class="viewed_name"><a
+                                                        href="{{ route('user.product.detail', ['id' => $product->id]) }}">{{ $product->title }}</a>
+                                                </div>
                                             </div>
-
-                                            <div class="viewed_price">{{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ</div>
-                                            <div class="viewed_name"><a href="{{ route('user.product.detail', ['id' => $product->id]) }}">{{ $product->title }}</a></div>
+                                            <ul class="item_marks">
+                                                @if ($product->discount > 0)
+                                                    <li class="item_mark item_discount">
+                                                        -{{ formatNumber($product->discount) }}%</li>
+                                                @endif
+                                            </ul>
                                         </div>
-                                        <ul class="item_marks">
-                                            @if($product->discount > 0)
-                                                <li class="item_mark item_discount">-{{ formatNumber($product->discount) }}%</li>
-                                            @endif
-                                        </ul>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     <!-- Brands -->

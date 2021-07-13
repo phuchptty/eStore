@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -15,72 +16,100 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        // session()->forget('cart');
+        return view('user.products.cart');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function create()
+    public function addToCart($id)
     {
-        //
+        $product = Product::find($id);
+
+        if (!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        if (!$cart) {
+            // first item
+            $cart = [
+                $id => [
+                    "title" => $product->title,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "image" => $product->image
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        $cart[$id] = [
+            "title" => $product->title,
+            "quantity" => 1,
+            "price" => $product->price,
+            "image" => $product->image
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        // return redirect()->route('user.home.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        //
+        if ($request->id and $request->quantity) {
+            $cart = session()->get('cart');
+
+            $cart[$request->id]["quantity"] = $request->quantity;
+
+            session()->put('cart', $cart);
+
+            $subTotal = formatNumber($cart[$request->id]['quantity'] * $cart[$request->id]['price']);
+
+            $data = $this->getCartTotal();
+
+            return response()->json(['msg' => 'Cart updated successfully', 'total' => $data['total'],'quantity' => $data['quantity'], 'subTotal' => $subTotal]);
+            // session()->flash('success', 'Cart updated successfully');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function show($id)
+    public function remove(Request $request)
     {
-        //
+        if ($request->id) {
+
+            $cart = session()->get('cart');
+
+            if (isset($cart[$request->id])) {
+
+                unset($cart[$request->id]);
+
+                session()->put('cart', $cart);
+            }
+
+            $data = $this->getCartTotal();
+
+
+            return response()->json(['msg' => 'Product removed successfully', 'total' => $data['total'],'quantity' => $data['quantity'],]);
+
+            // session()->flash('success', 'Product removed successfully');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function edit($id)
+    private function getCartTotal()
     {
-        //
-    }
+        $total = 0;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $quantity = 0;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        $cart = session()->get('cart');
+
+        foreach ($cart as $id => $product) {
+            $total += $product['price'] * $product['quantity'];
+            $quantity += $product['quantity'];
+        }
+
+        return ['total' => formatNumber($total), 'quantity' => $quantity];
     }
 }

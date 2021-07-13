@@ -34,7 +34,8 @@
                         <div class="order_info d-flex flex-row">
                             <form action="#">
                                 <div>
-                                    <span style="line-height: 50px; font-size: 18px; color: {{ $product->quantity > 0 ? '#27ae60' : '#f9495f' }}">
+                                    <span
+                                        style="line-height: 50px; font-size: 18px; color: {{ $product->quantity > 0 ? '#27ae60' : '#f9495f' }}">
                                         <i class="fa fa-circle" style="font-size: 14px; margin-right: 9px;"></i>
                                         {{ $product->quantity > 0 ? 'Còn hàng' : 'Hết hàng' }}
                                     </span>
@@ -45,24 +46,30 @@
                                             <span>Số lượng: </span>
                                             <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
                                             <div class="quantity_buttons">
-                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i>
+                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
+                                                        class="fas fa-chevron-up"></i>
                                                 </div>
-                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i>
+                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
+                                                        class="fas fa-chevron-down"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    @if($product->price != 0)
+                                    @if ($product->price != 0)
                                         <div class="product_price_container">
-                                            @if($product->discount != 0)
-                                                <div class="product_price_discount">{{ $product->price }} đ</div>
+                                            @if ($product->discount != 0)
+                                                <div class="product_price_discount">
+                                                    {{ calculatePriceAfterDiscount($product->price, $product->discount) }}
+                                                    đ</div>
                                             @endif
-                                            <div class="product_price">{{ $product->price }} đ</div>
+                                            <div class="product_price">{{ formatNumber($product->price) }} đ</div>
                                         </div>
 
                                         <div class="button_container">
-                                            <button type="button" class="button cart_button">Thêm vào giỏ hàng</button>
+                                            <a href="{{ route('user.cart.add', ['id' => $product->id]) }}" class="btn btn-primary">
+                                                    Thêm vào giỏ hàng
+                                            </a>
                                         </div>
                                     @else
                                         <div class="product_price_container">
@@ -82,7 +89,6 @@
 @endsection
 
 @section('js-lib')
-    <script src="{{ asset('plugins/easing/easing.js') }}"></script>
     <script src="{{ asset('js/product_custom.js') }}"></script>
 @endsection
 

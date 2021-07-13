@@ -46,17 +46,17 @@
 
                         <div class="form-group">
                             <label for="price">Giá</label>
-                            <input type="number" class="form-control" id="price" name="price">
+                            <input type="number" class="form-control" id="price" name="price" min="0" step="100000">
                         </div>
 
                         <div class="form-group">
                             <label for="discount">Giảm giá</label>
-                            <input type="number" class="form-control" id="discount" name="discount">
+                            <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" step="5">
                         </div>
 
                         <div class="form-group">
                             <label for="quantity">Số lượng</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity">
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1">
                         </div>
 
                         <label>Quảng cáo</label>

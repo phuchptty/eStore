@@ -35,7 +35,6 @@
                         <li><a href="#">Smartphones & Tablets</a></li>
                         <li><a href="#">TV & Audio</a></li>
                     </ul>
-                    <div class="footer_subtitle">Gadgets</div>
                     <ul class="footer_list">
                         <li><a href="#">Car Electronics</a></li>
                     </ul>

@@ -35,7 +35,7 @@
                             <label for="category">Danh mục sản phẩm</label>
                             <select class="form-control" style="margin: 0" id="category" name="category">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">
+                                    <option value="{{ $category->id }}" @if($category->id == $product->categories[0]->id) selected @endif>
                                         @if($category->parentCategory)
                                             @include('admin.categories.parent_category', ['parent_category' => $category->parentCategory])
                                         @endif
@@ -63,12 +63,12 @@
                         <label>Quảng cáo</label>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="banner1" name="banner1" @if($product->banner1) checked @endif>
+                            <input class="form-check-input" type="checkbox" id="banner1" name="banner1" @if($product->banner_1) checked @endif>
                             <label class="form-check-label" for="banner1">Banner 1</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="banner2" name="banner2" @if($product->banner2) checked @endif>
+                            <input class="form-check-input" type="checkbox" id="banner2" name="banner2" @if($product->banner_2) checked @endif>
                             <label class="form-check-label" for="banner2">Banner 2</label>
                         </div>
 

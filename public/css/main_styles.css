@@ -1473,24 +1473,44 @@ select option {
 .product_price {
     font-size: 16px;
     font-weight: 500;
-    margin-top: 25px;
+    /* margin-top: 25px; */
 }
 .product_price.discount {
     color: #df3b3b;
 }
 .product_price span {
+    position: relative;
     font-size: 12px;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.6);
     margin-left: 10px;
 }
+.product_price span::after {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: 1px;
+    background: #8d8d8d;
+    content: "";
+}
+.product_item.discount {
+    color: #df3b3b;
+}
 .product_name {
     margin-top: 4px;
     overflow: hidden;
 }
+
 .product_name div {
-    width: 90%;
+    width: 95%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
 }
+
 .product_name div a {
     font-size: 14px;
     font-weight: 400;
@@ -1989,8 +2009,8 @@ select option {
 }
 .arrivals_slider_item {
     visibility: hidden;
-    height: 263px;
     width: 25%;
+    height: 263px;
 }
 .arrivals_slider .slick-active .arrivals_slider_item {
     visibility: visible;
@@ -2855,6 +2875,10 @@ select option {
 }
 .viewed_name {
     margin-top: 3px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
 }
 .viewed_name a {
     font-size: 14px;

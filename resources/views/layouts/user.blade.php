@@ -18,10 +18,15 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/partial/header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/partial/footer.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}">
 
@@ -49,6 +54,10 @@
     <script src="{{ asset('plugins/greensock/animation.gsap.min.js') }}"></script>
     <script src="{{ asset('plugins/greensock/ScrollToPlugin.min.js') }}"></script>
     <script src="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+    <script src="{{ asset('plugins/easing/easing.js') }}"></script>
+    <script src="{{ asset('plugins/Isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.js') }}"></script>
+    <script src="{{ asset('plugins/parallax-js-master/parallax.min.js') }}"></script>
 
     @yield('js-lib')
 

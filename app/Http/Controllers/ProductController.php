@@ -115,12 +115,15 @@ class ProductController extends Controller
         $price = $request->price;
         $quantity = $request->quantity;
         $discount = $request->discount;
-        $banner1 = $request->banner1;
-        $banner2 = $request->banner2;
-        $active = $request->active;
+        $banner1 = $request->banner1 == 'on' ? 1 : 0;
+        $banner2 = $request->banner2 == 'on' ? 1 : 0;
+        $active = $request->active == 'on' ? 1 : 0;
         $category = $request->category;
 
         $fileName = time() . '.' . $image->getClientOriginalExtension();
+
+        $productOld = Product::find($id);
+        $productOld->categories()->updateExistingPivot($productOld->categories[0]->id, ['category_id' => $category]);
 
         Product::where('id', $id)->update([
             'user_id' => Auth::user()->id,

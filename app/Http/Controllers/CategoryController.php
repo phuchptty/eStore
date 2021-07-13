@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Product;
 use Redirect;
 
 class CategoryController extends Controller
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('active', 1)->with('parentCategory')->paginate(2);
+        $categories = Category::where('active', 1)->with('parentCategory')->paginate(5);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -74,7 +75,14 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::with('parentCategory')->get();
+        $categories = Category::with('parentCategory')
+            ->where('id', '<>', $id)
+            ->whereHas('parentCategory', function ($q) use ($id) {
+                $q->where('id', '<>', $id);
+            })
+            ->orWhere('id', '<>', $id)
+            ->whereNull('parent_id')
+            ->get();
 
         return view('admin.categories.update', compact('categories', 'category'));
     }

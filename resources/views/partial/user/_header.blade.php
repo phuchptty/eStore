@@ -18,18 +18,18 @@
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="{{ asset('images/user.svg') }}" alt=""></div>
                             @guest
-                                <div><a href="{{ route('register') }}">Đăng ký</a></div>
-                                <div><a href="{{ route('login') }}">Đăng nhập</a></div>
+                            <div><a href="{{ route('register') }}">Đăng ký</a></div>
+                            <div><a href="{{ route('login') }}">Đăng nhập</a></div>
                             @endguest
                             @auth
-                                <div style="font-size: 16px">
-                                    {{ Auth::user()->first_name . ' ' .  Auth::user()->middle_name . ' ' .  Auth::user()->last_name }}
-                                </div>
-                                <div><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Đăng xuất</a></div>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                            <div style="font-size: 16px">
+                                {{ Auth::user()->first_name . ' ' . Auth::user()->middle_name . ' ' . Auth::user()->last_name }}
+                            </div>
+                            <div><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Đăng xuất</a></div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                             @endauth
                         </div>
                     </div>
@@ -86,16 +86,43 @@
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                         <!-- Cart -->
                         <div class="cart">
-                            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                <div class="cart_icon">
-                                    <img src="{{ asset('images/cart.png') }}" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                            <a href="{{ route('user.cart.index') }}">
+                                @if (session('cart'))
+                                @php
+                                $totalQuantity = 0;
+                                $total = 0;
+                                foreach (session('cart') as $id => $product) {
+                                $totalQuantity += $product['quantity'];
+                                $total += $product['price'] * $product['quantity'];
+                                }
+                                @endphp
+                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                    <div class="cart_icon">
+                                        <img src="{{ asset('images/cart.png') }}" alt="">
+                                        <div class="cart_count"><span id="cart_quantity">{{ $totalQuantity }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="cart_content">
+                                        <div class="cart_text"><a href="{{ route('user.cart.index') }}">Giỏ
+                                                hàng</a></div>
+                                        <div class="cart_price" id="cart_price">{{ formatNumber($total) }} đ
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="cart_content">
-                                    <div class="cart_text"><a href="#">Giỏ hàng</a></div>
-                                    <div class="cart_price">85 VNĐ</div>
+                                @else
+                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                    <div class="cart_icon">
+                                        <img src="{{ asset('images/cart.png') }}" alt="">
+                                        <div class="cart_count"><span>0</span></div>
+                                    </div>
+                                    <div class="cart_content">
+                                        <div class="cart_text"><a href="{{ route('user.cart.index') }}">Giỏ
+                                                hàng</a></div>
+                                        <div class="cart_price">0 đ</div>
+                                    </div>
                                 </div>
-                            </div>
+                                @endif
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -120,17 +147,19 @@
                                 <div class="cat_menu_text">danh mục sản phẩm</div>
                             </div>
 
-                            @if(count($categories) > 0)
+                            @if (count($categories) > 0)
                             <ul class="cat_menu">
                                 @foreach ($categories as $category)
-                                    <li @if(!$category->childrenCategories->isEmpty()) class="hassubs" @endif>
-                                        <a href="#">{{ $category->title }}<i class="fas fa-chevron-right ml-auto"></i></a>
-                                        <ul>
-                                            @foreach ($category->childrenCategories as $childCategory)
-                                                @include('partial.user.child_category', ['child_category' => $childCategory])
-                                            @endforeach
-                                        </ul>
-                                    </li>
+                                <li @if (!$category->childrenCategories->isEmpty()) class="hassubs" @endif>
+                                    <a href="{{ route('user.product.category', ['id' => $category->id]) }}">{{ $category->title }}<i
+                                            class="fas fa-chevron-right ml-auto"></i></a>
+                                    <ul>
+                                        @foreach ($category->childrenCategories as $childCategory)
+                                        @include('partial.user.child_category', ['child_category' =>
+                                        $childCategory])
+                                        @endforeach
+                                    </ul>
+                                </li>
                                 @endforeach
                             </ul>
                             @endif
@@ -138,9 +167,10 @@
 
                         <!-- Main Nav Menu -->
 
-                        <div class="main_nav_menu m-auto">
+                        {{-- <div class="main_nav_menu m-auto">
                             <ul class="standard_dropdown main_nav_dropdown">
-                                <li><a href="#">Trang chủ<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="{{ route('user.home.index') }}">Trang chủ<i
+                                            class="fas fa-chevron-down"></i></a></li>
                                 <li class="hassubs">
                                     <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
                                     <ul>
@@ -159,7 +189,7 @@
                                 </li>
                                 <li><a href="contact.html">Liên hệ<i class="fas fa-chevron-down"></i></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                         <!-- Menu Trigger -->
 

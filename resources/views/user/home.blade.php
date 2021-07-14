@@ -16,21 +16,21 @@
 
     <div class="banner">
         <div class="banner_background"
-            style="background-image:url(https://mediaonlinevn.com/wp-content/uploads/2020/06/200629-asus-rog-zephyrus-g14-03_resize.jpg)">
+            style="background-image:url('images/banner_background.jpg')">
         </div>
         <div class="container fill_height">
             <div class="row fill_height">
                 <div class="banner_product_image">
-                    {{-- <img src="{{ asset('storage/uploads/' . $banner1->image) }}" alt=""> --}}
+                     <img src="{{ asset('storage/uploads/' . $banner1->image) }}" alt="">
                 </div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
-                        <h1 class="banner_text">new era of smartphones</h1>
+                        <h1 class="banner_text">brand new</h1>
                         <div class="banner_price">
-                            <span>47.499.000 đ</span><br>47.499.000 đ
+                            <span>{{ formatNumber($banner1->price) }} đ</span><br>{{ calculatePriceAfterDiscount($banner1->price, $banner1->discount) }} đ
                         </div>
                         <div class="banner_product_name">{{ $banner1->title }}</div>
-                        <div class="button banner_button"><a href="#">Xem ngay</a></div>
+                        <div class="button banner_button"><a href="{{ route('user.product.detail', ['id' => $banner1->id])  }}">Xem ngay</a></div>
                     </div>
                 </div>
             </div>
@@ -109,9 +109,7 @@
                                 <div class="row fill_height">
                                     <div class="col-lg-4 col-md-6 fill_height">
                                         <div class="banner_2_content">
-                                            <div class="banner_2_category">Laptops</div>
                                             <div class="banner_2_title">{{ $banner->title }}</div>
-                                            <div class="banner_2_text">{!! $banner->summary !!}</div>
                                             <div class="button banner_2_button"><a
                                                     href="{{ route('user.product.detail', ['id' => $banner->id]) }}">Khám
                                                     phá</a></div>

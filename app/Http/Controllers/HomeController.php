@@ -40,6 +40,8 @@ class HomeController extends Controller
 
     public function showProductByCategory(Request $request, $id)
     {
+        $priceFilter = $request->priceFilter;
+
         $categories = Category::whereNull('parent_id')->where('active', 1)->get();
 
         $category = Category::with('childrenCategories')->where('id', $id)->first();
@@ -48,7 +50,24 @@ class HomeController extends Controller
 
         $products = Product::whereHas('categories', function ($q) use ($listCategories) {
             $q->whereIn('id', $listCategories);
-        })->paginate(20);
+        });
+
+        if ($priceFilter == 'u10') {
+            $products = $products->where('price', "<=", 10000000);
+        }
+        if ($priceFilter == 'o30') {
+            $products = $products->where('price', ">=", 30000000);
+        }
+        if ($priceFilter && $priceFilter != 'u10' && $priceFilter != 'o30') {
+            $price = explode('-', $priceFilter);
+
+            $priceFrom = (int)$price[0] * 1000000;
+            $priceTo = (int)$price[1] * 1000000;
+
+            $products = $products->whereBetween('price', [$priceFrom, $priceTo]);
+        }
+
+        $products = $products->paginate(20);
 
         $recentlyViewed = [];
 
@@ -58,5 +77,46 @@ class HomeController extends Controller
         }
 
         return view('user.products.index', compact('categories', 'products', 'recentlyViewed', 'category'));
+    }
+
+    public function searchProduct(Request $request)
+    {
+        $priceFilter = $request->priceFilter;
+        $productName = $request->productName;
+
+        $categories = Category::whereNull('parent_id')->where('active', 1)->get();
+
+        $products = Product::where('title', 'like', '%' . $productName . '%');
+
+        if ($priceFilter == 'u10') {
+            $products = $products->where('price', "<=", 10000000);
+        }
+        if ($priceFilter == 'o30') {
+            $products = $products->where('price', ">=", 30000000);
+        }
+        if ($priceFilter && $priceFilter != 'u10' && $priceFilter != 'o30') {
+            $price = explode('-', $priceFilter);
+
+            $priceFrom = (int)$price[0] * 1000000;
+            $priceTo = (int)$price[1] * 1000000;
+
+            $products = $products->whereBetween('price', [$priceFrom, $priceTo]);
+        }
+
+        $products = $products->paginate(20);
+
+        $products->appends([
+            'priceFilter',
+            '$productName'
+        ]);
+
+        $recentlyViewed = [];
+
+        $productsViewed = session()->get('products.recently_viewed');
+        if ($productsViewed) {
+            $recentlyViewed = Product::find($productsViewed);
+        }
+
+        return view('user.products.search', compact('categories', 'products', 'recentlyViewed'));
     }
 }

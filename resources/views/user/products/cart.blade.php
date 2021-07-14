@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="cart_container">
-                        <div class="cart_title">Shopping Cart</div>
+                        <div class="cart_title">Giỏ hàng</div>
                         @php $total = 0; @endphp
                         @if (session('cart'))
                             <div class="cart_items">
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         @else
-                            <div>Empty</div>
+                            <div>Trống</div>
                         @endif
                     </div>
                     <div class="text-right" style="padding-top: 35px">

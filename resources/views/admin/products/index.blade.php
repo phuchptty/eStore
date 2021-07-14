@@ -21,7 +21,7 @@
                             Danh mục sản phẩm
                         </div>
                         <div>
-                            <a href="{{ route('admin.product.store') }}" class="button product_button_create">Thêm sản
+                            <a href="{{ route('admin.product.store') }}" class="btn btn-primary">Thêm sản
                                 phẩm</a>
                         </div>
                     </div>
@@ -58,9 +58,9 @@
                                         <div class="product_item_total product_info_col" style="width: 15%">
                                             <div class="product_item_title">Chức năng</div>
                                             <div class="product_item_text">
-                                                <a class="button product_button_update"
+                                                <a class="btn btn-outline-primary"
                                                     href="{{ route('admin.product.edit', ['id' => $product->id]) }}"><i class="fas fa-wrench"></i></a>
-                                                <a class="button product_button_delete"
+                                                <a class="btn btn-danger"
                                                     href="{{ route('admin.product.destroy', ['id' => $product->id]) }}"><i class="far fa-trash-alt"></i></a>
                                             </div>
                                         </div>
@@ -70,11 +70,7 @@
                             </ul>
                         </div>
 
-                        <div class="order_total">
-                            <div class="order_total_content text-md-right">
-                                {!! $products->links() !!}
-                            </div>
-                        </div>
+                        {!! $products->links() !!}
                     @endif
                 </div>
             </div>

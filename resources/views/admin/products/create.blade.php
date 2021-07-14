@@ -4,26 +4,25 @@
 
 @section('css-lib')
     <link rel="stylesheet" href="{{ asset('css/admin/product/product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contact_styles.css') }}">
 @endsection
 
 @section('css')
-<style>
-    .ck-editor__editable {
-        min-height: 300px;
-    }
-</style>
+    <style>
+        .ck-editor__editable {
+            min-height: 300px;
+        }
+    </style>
 @endsection
 
 @section('content')
-<div class="contact_form">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="contact_form_container">
-                    <div class="contact_form_title">Thêm sản phẩm</div>
+    <div class="product_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product_form_title">Thêm sản phẩm</div>
 
-                    <form id="contact_form" action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="contact_form" action="{{ route('admin.product.store') }}" method="POST"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="title">Tiêu đề</label>
@@ -46,17 +45,19 @@
 
                         <div class="form-group">
                             <label for="price">Giá</label>
-                            <input type="number" class="form-control" id="price" name="price" min="0" step="100000">
+                            <input type="number" class="form-control" id="price" name="price" min="0">
                         </div>
 
                         <div class="form-group">
                             <label for="discount">Giảm giá</label>
-                            <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" step="5">
+                            <input type="number" class="form-control" id="discount" name="discount" min="0"
+                                   max="100">
                         </div>
 
                         <div class="form-group">
                             <label for="quantity">Số lượng</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1">
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="0"
+                                   step="1">
                         </div>
 
                         <label>Quảng cáo</label>
@@ -78,32 +79,40 @@
 
                         <div class="form-group">
                             <label for="image">Hình ảnh</label>
-                            <input type="file" class="form-control-file" id="image" name="image">
+                            <input type="file" class="form-control-file" id="image" name="image"
+                                   accept="image/png, image/gif, image/jpeg">
                         </div>
 
                         <div class="form-group">
                             <label for="summary">Mô tả</label>
-                            <textarea id="summary" name="summary" style="width: 100%; height: 100px; padding: 10px"></textarea>
+                            <textarea id="summary" name="summary"
+                                      style="width: 100%; height: 100px; padding: 10px"></textarea>
                         </div>
 
 
-                        <div class="contact_form_button">
-                            <button type="submit" class="button contact_submit_button">Lưu</button>
+                        <div class="text-right">
+                            <a href="{{route('admin.product.index') }}" class="btn btn-light">Hủy</a>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </form>
 
                 </div>
             </div>
         </div>
+        <div class="panel"></div>
     </div>
-    <div class="panel"></div>
-</div>
 @endsection
 
 @section('js-lib')
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 @endsection
 
 @section('js')
-
+    <script>
+        ClassicEditor.create(document.querySelector('#summary'), {
+                toolbar:
+                    ['bold', 'italic', 'bulletedList', 'numberedList']
+            }
+        )
+    </script>
 @endsection

@@ -12,11 +12,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $products = Product::where('active', 1)->paginate(10);
+        $products = Product::where('active', 1)->paginate(5);
 
         return view('admin.products.index', compact('products'));
     }
@@ -24,7 +24,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function create()
     {
@@ -36,8 +36,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -89,8 +89,8 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -103,9 +103,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -120,8 +120,6 @@ class ProductController extends Controller
         $active = $request->active == 'on' ? 1 : 0;
         $category = $request->category;
 
-        $fileName = time() . '.' . $image->getClientOriginalExtension();
-
         $productOld = Product::find($id);
         $productOld->categories()->updateExistingPivot($productOld->categories[0]->id, ['category_id' => $category]);
 
@@ -129,7 +127,6 @@ class ProductController extends Controller
             'user_id' => Auth::user()->id,
             'title' => $title,
             'summary' => $summary,
-            'image' => $fileName,
             'price' => $price,
             'quantity' => $quantity,
             'discount' => $discount,
@@ -138,7 +135,13 @@ class ProductController extends Controller
             'active' => $active
         ]);
 
-        $request->image->storeAs('uploads', $fileName, 'public');
+        if ($request->image) {
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            Product::where('id', $id)->update([
+                'image' => $fileName,
+            ]);
+            $request->image->storeAs('uploads', $fileName, 'public');
+        }
 
         return redirect()->route('admin.product.index');
     }
@@ -146,8 +149,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

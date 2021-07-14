@@ -22,6 +22,7 @@ Route::group(['prefix' => '/'], function () {
 
     Route::get('/product/{id}', 'HomeController@showProduct')->name('user.product.detail');
     Route::get('/product-category/{id}', 'HomeController@showProductByCategory')->name('user.product.category');
+    Route::get('/search-product', 'HomeController@searchProduct')->name('user.product.search');
 
     Route::get('/cart', 'CartController@index')->name('user.cart.index');
     Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('user.cart.add');

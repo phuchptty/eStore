@@ -21,7 +21,7 @@
                                 Danh mục
                             </div>
                             <div>
-                                <a href="{{ route('admin.category.store') }}" class="button category_button_create">Thêm
+                                <a href="{{ route('admin.category.store') }}" class="btn btn-primary">Thêm
                                     danh mục</a>
                             </div>
                         </div>
@@ -47,12 +47,11 @@
                                                 <div class="category_item_title">Chức năng</div>
                                                 <div class="category_item_buttons">
                                                     <form action="{{ route('admin.category.destroy', ['id' => $category->id]) }}" method="POST">
-                                                        <a class="button category_button_update"
-                                                        href="{{ route('admin.category.edit', ['id' => $category->id]) }}">Cập
-                                                        nhật</a>
+                                                        <a class="btn btn-outline-primary"
+                                                        href="{{ route('admin.category.edit', ['id' => $category->id]) }}"><i class="fas fa-wrench"></i></a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="button category_button_delete">Xóa</button>
+                                                        <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                                     </form>
                                                 </div>
                                             </div>

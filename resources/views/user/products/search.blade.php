@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Trang sản phẩm')
+@section('title', 'Tìm kiếm sản phẩm')
 
 @section('css-lib')
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick-1.8.0/slick.css') }}">
@@ -20,7 +20,7 @@
              data-image-src="{{ asset('images/shop_background.jpg') }}"></div>
         <div class="home_overlay"></div>
         <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">{{ $category->title }}</h2>
+            <h2 class="home_title">Tìm kiếm sản phẩm</h2>
         </div>
     </div>
 
@@ -37,15 +37,13 @@
                             <div class="sidebar_title">Danh mục</div>
                             <ul class="sidebar_categories">
                                 @foreach ($categories as $category)
-                                    <li>
-                                        <a href="{{ route('user.product.category', ['id' => $category->id]) }}">{{ $category->title }}</a>
-                                    </li>
+                                    <li><a href="{{ route('user.product.category', ['id' => $category->id]) }}">{{ $category->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
 
                         <div class="sidebar_section filter_by_section">
-                            <form action="{{ route('user.product.category', ['id' => $category->id]) }}" method="GET">
+                            <form action="{{ route('user.product.search') }}" method="GET">
                                 @csrf
                                 <div class="sidebar_title">Lọc theo</div>
 
@@ -83,8 +81,7 @@
 
                     <div class="shop_content">
                         <div class="shop_bar clearfix">
-                            <div class="shop_product_count"><span>{{ count($products) }}</span> sản phẩm được tìm thấy
-                            </div>
+                            <div class="shop_product_count"><span>{{ count($products) }}</span> sản phẩm được tìm thấy</div>
                         </div>
 
                         <div class="product_grid">
@@ -94,9 +91,7 @@
 
                                 <div class="product_item @if($product->discount != 0) discount @endif is_new">
                                     <div class="product_border"></div>
-                                    <div
-                                        class="product_image d-flex flex-column align-items-center justify-content-center">
-                                        <img
+                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img
                                             src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
                                     <div class="product_content">
                                         <div class="product_price">
@@ -122,9 +117,7 @@
                                         </div>
                                     </div>
                                     <ul class="product_marks">
-                                        <li class="product_mark product_discount">
-                                            -{{ formatNumber($product->discount) }}%
-                                        </li>
+                                        <li class="product_mark product_discount">-{{ formatNumber($product->discount) }}%</li>
                                         <li class="product_mark product_new">mới</li>
                                     </ul>
                                 </div>
@@ -164,8 +157,7 @@
                                             <div
                                                 class="viewed_item is_new discount d-flex flex-column align-items-center justify-content-center text-center">
                                                 <div class="viewed_image"><img
-                                                        src="{{ asset('storage/uploads/' . $product->image) }}" alt="">
-                                                </div>
+                                                        src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
                                                 <div class="viewed_content text-center">
 
                                                     <div class="viewed_price">
@@ -177,8 +169,7 @@
                                                     </div>
 
                                                     <div class="viewed_price">
-                                                        {{ calculatePriceAfterDiscount($product->price, $product->discount) }}
-                                                        đ
+                                                        {{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ
                                                     </div>
                                                     <div class="viewed_name"><a
                                                             href="{{ route('user.product.detail', ['id' => $product->id]) }}">{{ $product->title }}</a>
@@ -186,8 +177,7 @@
                                                 </div>
                                                 <ul class="item_marks">
                                                     @if($product->discount > 0)
-                                                        <li class="item_mark item_discount">
-                                                            -{{ formatNumber($product->discount) }}%
+                                                        <li class="item_mark item_discount">-{{ formatNumber($product->discount) }}%
                                                         </li>
                                                     @endif
                                                 </ul>

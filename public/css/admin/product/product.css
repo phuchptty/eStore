@@ -13,7 +13,7 @@
 }
 .product_items {
     margin-top: 67px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 .product_list {
     border: solid 1px #e8e8e8;
@@ -74,7 +74,7 @@
     height: 60px;
     margin-top: 30px;
     border: solid 1px #e8e8e8;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     padding-right: 46px;
     padding-left: 15px;
 }
@@ -95,56 +95,9 @@
     margin-top: 60px;
     text-align: right;
 }
-.product_button_create {
-    display: inline-block;
-    border: none;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 48px;
-    color: #ffffff;
-    background: #0e8ce4;
-    padding-left: 35px;
-    padding-right: 35px;
-    outline: none;
-    cursor: pointer;
-    vertical-align: top;
-}
-.product_button_create:hover {
-    color: #fff;
-}
-.product_button_update {
-    display: inline-block;
-    border: none;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 48px;
-    color: rgba(0, 0, 0, 0.5);
-    background: #ffffff;
-    border: solid 1px #b2b2b2;
-    padding-right: 15px;
-    padding-left: 15px;
-    outline: none;
-    cursor: pointer;
-    margin-right: 15px;
-}
-.product_button_update:hover {
-    border-color: #0e8ce4;
-    color: #0e8ce4;
-}
-.product_button_delete {
-    display: inline-block;
-    border: none;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 48px;
-    color: #ffffff;
-    background: #E65C68;
-    padding-left: 15px;
-    padding-right: 15px;
-    outline: none;
-    cursor: pointer;
-    vertical-align: top;
-}
-.product_button_delete:hover{
-    color: #fff;
+.product_form_title
+{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 37px;
 }

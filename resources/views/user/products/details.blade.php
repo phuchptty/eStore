@@ -41,29 +41,28 @@
                                     </span>
                                 </div>
                                 <div style="display: {{ $product->quantity > 0 ? 'block' : 'none' }}">
-                                    <div class="clearfix" style="z-index: 1000;">
-                                        <div class="product_quantity clearfix">
-                                            <span>Số lượng: </span>
-                                            <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                                            <div class="quantity_buttons">
-                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
-                                                        class="fas fa-chevron-up"></i>
-                                                </div>
-                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
-                                                        class="fas fa-chevron-down"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="clearfix" style="z-index: 1000;">--}}
+{{--                                        <div class="product_quantity clearfix">--}}
+{{--                                            <span>Số lượng: </span>--}}
+{{--                                            <input id="quantity_input" type="text" pattern="[0-9]*" value="1">--}}
+{{--                                            <div class="quantity_buttons">--}}
+{{--                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i--}}
+{{--                                                        class="fas fa-chevron-up"></i>--}}
+{{--                                                </div>--}}
+{{--                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i--}}
+{{--                                                        class="fas fa-chevron-down"></i>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     @if ($product->price != 0)
                                         <div class="product_price_container">
                                             @if ($product->discount != 0)
                                                 <div class="product_price_discount">
-                                                    {{ calculatePriceAfterDiscount($product->price, $product->discount) }}
-                                                    đ</div>
+                                                    {{ formatNumber($product->price) }} đ</div>
                                             @endif
-                                            <div class="product_price">{{ formatNumber($product->price) }} đ</div>
+                                            <div class="product_price">{{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ</div>
                                         </div>
 
                                         <div class="button_container">

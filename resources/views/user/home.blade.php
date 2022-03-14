@@ -16,21 +16,23 @@
 
     <div class="banner">
         <div class="banner_background"
-            style="background-image:url('images/banner_background.jpg')">
+             style="background-image:url('images/banner_background.jpg')">
         </div>
         <div class="container fill_height">
             <div class="row fill_height">
                 <div class="banner_product_image">
-                     <img src="{{ asset('storage/uploads/' . $banner1->image) }}" alt="">
+                    <img src="{{ $banner1->image }}" alt="">
                 </div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
                         <h1 class="banner_text">brand new</h1>
                         <div class="banner_price">
-                            <span>{{ formatNumber($banner1->price) }} đ</span><br>{{ calculatePriceAfterDiscount($banner1->price, $banner1->discount) }} đ
+                            <span>{{ formatNumber($banner1->price) }} đ</span><br>{{ calculatePriceAfterDiscount($banner1->price, $banner1->discount) }}
+                            đ
                         </div>
                         <div class="banner_product_name">{{ $banner1->title }}</div>
-                        <div class="button banner_button"><a href="{{ route('user.product.detail', ['id' => $banner1->id])  }}">Xem ngay</a></div>
+                        <div class="button banner_button"><a
+                                href="{{ route('user.product.detail', ['id' => $banner1->id])  }}">Xem ngay</a></div>
                     </div>
                 </div>
             </div>
@@ -118,7 +120,7 @@
                                     <div class="col-lg-8 col-md-6 fill_height">
                                         <div class="banner_2_image_container">
                                             <div class="banner_2_image"><img
-                                                    src="{{ asset('storage/uploads/' . $banner->image) }}" alt=""></div>
+                                                    src="{{ $banner->image }}" alt=""></div>
                                         </div>
                                     </div>
                                 </div>
@@ -153,19 +155,20 @@
                                                     class="product_item @if($newProduct->discount != 0) discount @endif is_new d-flex flex-column align-items-center justify-content-center text-center">
                                                     <div
                                                         class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                        <img src="{{ asset('storage/uploads/' . $newProduct->image) }}"
-                                                            alt="">
+                                                        <img src="{{ $newProduct->image }}"
+                                                             alt="">
                                                     </div>
                                                     <div class="product_content">
                                                         <div class="product_price">
                                                             <div>
                                                                 @if($newProduct->discount != 0)
-                                                                <span>{{ formatNumber($newProduct->price) }} đ</span>
+                                                                    <span>{{ formatNumber($newProduct->price) }} đ</span>
                                                                 @else
-                                                                &nbsp;
+                                                                    &nbsp;
                                                                 @endif
                                                             </div>
-                                                            {{ calculatePriceAfterDiscount($newProduct->price, $newProduct->discount) }} đ
+                                                            {{ calculatePriceAfterDiscount($newProduct->price, $newProduct->discount) }}
+                                                            đ
                                                         </div>
                                                         <div class="product_name">
                                                             <div>
@@ -175,20 +178,23 @@
                                                         <div class="product_extras">
                                                             <a href="{{ route('user.cart.add', ['id' => $newProduct->id]) }}">
                                                                 <button class="product_cart_button"
-                                                                    >Thêm vào giỏ hàng</button>
+                                                                >Thêm vào giỏ hàng
+                                                                </button>
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <ul class="product_marks">
                                                         @if($newProduct->discount != 0)
-                                                            <li class="product_mark product_discount">-{{ formatNumber($newProduct->discount) }}%</li>
+                                                            <li class="product_mark product_discount">
+                                                                -{{ formatNumber($newProduct->discount) }}%
+                                                            </li>
                                                         @endif
                                                         <li class="product_mark product_new">mới</li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                        <!-- End Slider Item -->
+                                    @endforeach
+                                    <!-- End Slider Item -->
                                     </div>
                                     <div class="arrivals_slider_dots_cover"></div>
                                 </div>
@@ -228,7 +234,7 @@
                                         <div
                                             class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div class="viewed_image"><img
-                                                    src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                                                    src="{{ $product->image }}" alt=""></div>
                                             <div class="viewed_content text-center">
 
                                                 <div class="viewed_price">
@@ -240,7 +246,8 @@
                                                 </div>
 
                                                 <div class="viewed_price">
-                                                    {{ calculatePriceAfterDiscount($product->price, $product->discount) }} đ
+                                                    {{ calculatePriceAfterDiscount($product->price, $product->discount) }}
+                                                    đ
                                                 </div>
                                                 <div class="viewed_name"><a
                                                         href="{{ route('user.product.detail', ['id' => $product->id]) }}">{{ $product->title }}</a>
@@ -249,7 +256,8 @@
                                             <ul class="item_marks">
                                                 @if ($product->discount > 0)
                                                     <li class="item_mark item_discount">
-                                                        -{{ formatNumber($product->discount) }}%</li>
+                                                        -{{ formatNumber($product->discount) }}%
+                                                    </li>
                                                 @endif
                                             </ul>
                                         </div>

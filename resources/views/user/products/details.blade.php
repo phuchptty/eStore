@@ -20,7 +20,7 @@
 
                 <!-- Selected Image -->
                 <div class="col-lg-7 order-lg-2 order-1">
-                    <div class="image_selected"><img src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                    <div class="image_selected"><img src="{{ $product->image }}" alt=""></div>
                 </div>
 
                 <!-- Description -->

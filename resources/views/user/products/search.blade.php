@@ -92,7 +92,7 @@
                                 <div class="product_item @if($product->discount != 0) discount @endif is_new">
                                     <div class="product_border"></div>
                                     <div class="product_image d-flex flex-column align-items-center justify-content-center"><img
-                                            src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                                            src="{{ $product->image }}" alt=""></div>
                                     <div class="product_content">
                                         <div class="product_price">
                                             @if($product->price != 0)
@@ -157,7 +157,7 @@
                                             <div
                                                 class="viewed_item is_new discount d-flex flex-column align-items-center justify-content-center text-center">
                                                 <div class="viewed_image"><img
-                                                        src="{{ asset('storage/uploads/' . $product->image) }}" alt=""></div>
+                                                        src="{{ $product->image }}" alt=""></div>
                                                 <div class="viewed_content text-center">
 
                                                     <div class="viewed_price">

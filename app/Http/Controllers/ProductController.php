@@ -45,14 +45,15 @@ class ProductController extends Controller
         $summary = $request->summary;
         $image = $request->image;
         $price = $request->price;
-        $quantity = $request->quantity;
+        $quantity = $request->quantity != 0 ? $request->quantity : 200;
         $discount = $request->discount;
         $banner1 = $request->banner1 == 'on' ? 1 : 0;
         $banner2 = $request->banner2 == 'on' ? 1 : 0;
         $active = $request->active == 'on' ? 1 : 0;
         $category = $request->category;
 
-        $fileName = time() . '.' . $image->getClientOriginalExtension();
+//        $fileName = time() . '.' . $image->getClientOriginalExtension();
+        $fileName = $image;
 
         $product = Product::create([
             'user_id' => Auth::user()->id,
@@ -69,7 +70,7 @@ class ProductController extends Controller
 
         $product->categories()->attach($category);
 
-        $request->image->storeAs('uploads', $fileName, 'public');
+//        $request->image->storeAs('uploads', $fileName, 'public');
 
         return redirect()->route('admin.product.index');
     }

@@ -7,13 +7,14 @@
             <div class="row">
                 <div class="col d-flex flex-row">
                     <div class="top_bar_contact_item">
-                        <div class="top_bar_icon"><img src="{{ asset('images/phone.png') }}" alt=""></div>
-                        096 732 99 28
+                        <div class="top_bar_icon"><img src="{{ asset('images/phone.png') }}" alt=""></div>012 345 789
                     </div>
+
                     <div class="top_bar_contact_item">
                         <div class="top_bar_icon"><img src="{{ asset('images/mail.png') }}" alt=""></div><a
-                            href="mailto:fastsales@gmail.com">my.gmail@ach.com</a>
+                            href="mailto:fastsales@gmail.com">admin@ach.com</a>
                     </div>
+
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_user">
                             <div class="user_icon"><img src="{{ asset('images/user.svg') }}" alt=""></div>

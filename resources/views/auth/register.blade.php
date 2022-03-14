@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                <div class="card mt-5">
+                    <div class="card-header">{{ __('Đăng ký') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -17,7 +17,7 @@
 
                             <div class="form-group row">
                                 <label for="first_name"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Tên') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="first_name" type="text"
@@ -35,7 +35,7 @@
 
                             <div class="form-group row">
                                 <label for="middle_name"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Tên đệm') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="middle_name" type="text"
@@ -53,7 +53,7 @@
 
                             <div class="form-group row">
                                 <label for="last_name"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Tên họ') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
@@ -71,7 +71,7 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -88,7 +88,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -105,7 +105,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại mật khẩu') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -116,7 +116,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Đăng ký') }}
                                     </button>
                                 </div>
                             </div>

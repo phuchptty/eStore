@@ -25,13 +25,13 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/search-product', 'HomeController@searchProduct')->name('user.product.search');
 
     Route::get('/cart', 'CartController@index')->name('user.cart.index');
-    Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('user.cart.add');
+    Route::get('/add-to-cart/{id}', 'CartController@addToCart')->middleware('auth')->name('user.cart.add');
 
     Route::put('/update-cart', 'CartController@update')->name('user.cart.update');
     Route::delete('/remove-from-cart', 'CartController@remove')->name('user.cart.remove');
 });
 
-Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'role']], function () {
+Route::group(['prefix' => '/admincp', 'middleware' => ['auth', 'role']], function () {
     Route::get('/', 'AdminController@index')->name('admin.home.index');
 
     // Product

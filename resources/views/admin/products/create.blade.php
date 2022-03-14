@@ -72,15 +72,16 @@
                             <label class="form-check-label" for="banner2">Banner 2</label>
                         </div>
 
-                        <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline mb-3">
                             <input class="form-check-input" type="checkbox" id="active" name="active" checked>
                             <label class="form-check-label" for="active">Active</label>
                         </div>
 
                         <div class="form-group">
                             <label for="image">Hình ảnh</label>
-                            <input type="file" class="form-control-file" id="image" name="image"
-                                   accept="image/png, image/gif, image/jpeg">
+                            {{--                            <input type="file" class="form-control-file" id="image" name="image"--}}
+                            {{--                                   accept="image/png, image/gif, image/jpeg">--}}
+                            <input type="text" class="form-control" id="image" name="image">
                         </div>
 
                         <div class="form-group">
